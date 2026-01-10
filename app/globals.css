@@ -52,7 +52,7 @@ body {
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: #F1F5F9;
   --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
@@ -126,4 +126,11 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+@theme {
+  --color-primary-500: #01F0D0;
+  --color-primary-600: #01CFB4;
+  --color-light-200: #F3F3F3;
 }
