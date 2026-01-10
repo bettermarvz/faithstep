@@ -2,8 +2,12 @@ import Link from "next/link";
 import Card from "./component/Card/Card";
 import ChallengeItem from "./component/ChallengeItem";
 import GratitudeCard from "./component/GratitudeCard";
+// import { getBibleTranslation } from "@/server/api/get";
+
 
 export default function Home() {
+
+  // console.log('home page rendered', getBibleTranslation())
   
   return (
     <>
