@@ -19,9 +19,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} max-w-[1258px] mx-auto sm:px-6`}>
-        <header>
-          <Navbar />
-        </header>
         <main className=" pt-6 flex flex-col gap-8">{children}</main>
       </body>
     </html>
