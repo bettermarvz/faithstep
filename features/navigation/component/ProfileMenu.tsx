@@ -1,11 +1,8 @@
-import Image from "next/image";
+import Avatar from "@/components/global/Avatar";
 import React from "react";
 
 const ProfileMenu = ({ url }: { url: string }) => {
-  if (!url) {
-    return <></>;
-  }
-  return <Image src={url} alt="Profile Menu" width={42} height={42} />;
+  return <Avatar url={url} label="Profile Menu" size="md" />;
 };
 
 // default properties here
