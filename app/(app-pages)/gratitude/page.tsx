@@ -1,4 +1,5 @@
 import GratitudeEditor from "@/features/gratitudes/component/GratitudeEditor";
+import GratitudeWall from "@/features/gratitudes/component/GratitudeWall";
 import React from "react";
 
 const Gratitude = () => {
@@ -14,6 +15,7 @@ const Gratitude = () => {
           </p>
         </div>
         <GratitudeEditor charLimit={280} />
+        <GratitudeWall />
       </div>
     </div>
   );
