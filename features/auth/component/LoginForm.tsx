@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { useForm } from "@tanstack/react-form";
 import { toast, Toaster } from "sonner";
 import * as z from "zod";
 
@@ -21,8 +20,9 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { formSchema } from "../type";
 import { useRouter } from "next/navigation";
+import { loginWithPassword } from "../api/auth";
+import { Controller, useForm } from "react-hook-form";
 
 export function LoginForm() {
   const route = useRouter();
@@ -31,103 +31,80 @@ export function LoginForm() {
       email: "",
       password: "",
     },
-    validators: {
-      onSubmit: formSchema,
-    },
-    onSubmit: async ({ value }) => {
-      // console.log("Form submitted:", value);
-      toast("Logging in...");
-    },
+  });
+
+  const handleSubmit = form.handleSubmit(async (data) => {
+    const { user, session } = await loginWithPassword(data);
+    console.log({ user, session });
+    if (!user && !session) {
+      toast.error("Login failed. Please check your credentials.");
+      return;
+    }
+    toast.success(`Welcome back, ${user}!`, { duration: 5000 });
+    route.push("/overview");
+    // toast("Signing up...");
   });
 
   return (
     <>
       <Toaster position="bottom-right" />
       <Card className="w-full sm:max-w-md">
-        <CardHeader>
-          <CardTitle className="text-3xl">Welcome to FaithStep</CardTitle>
-          <CardDescription>Please log in to your account.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form
-            id="login-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              form.handleSubmit();
-            }}
-          >
-            <FieldGroup>
-              <form.Field name="email">
-                {(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-                  return (
-                    <Field data-invalid={isInvalid}>
-                      <FieldLabel htmlFor={field.name}>Email</FieldLabel>
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        value={field.state.value}
-                        onBlur={field.handleBlur}
-                        onChange={(e) => field.handleChange(e.target.value)}
-                        aria-invalid={isInvalid}
-                        placeholder="Please enter your email"
-                        autoComplete="off"
-                        type="email"
-                      />
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              </form.Field>
-              <form.Field name="password">
-                {(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-                  return (
-                    <Field data-invalid={isInvalid}>
-                      <FieldLabel htmlFor={field.name}>Password</FieldLabel>
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        value={field.state.value}
-                        onBlur={field.handleBlur}
-                        onChange={(e) => field.handleChange(e.target.value)}
-                        aria-invalid={isInvalid}
-                        placeholder="Please enter your password"
-                        autoComplete="off"
-                        type="password"
-                      />
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              </form.Field>
-            </FieldGroup>
-          </form>
-        </CardContent>
-        <CardFooter>
-          <Field orientation="vertical">
-            <Button
-              className="cursor-pointer w-full"
-              type="submit"
-              form="login-form"
-            >
-              Login
-            </Button>
-            <a
-              className="cursor-pointer w-full text-center"
-              type="button"
-              onClick={() => route.push("/auth/signup")}
-            >
-              Signup
-            </a>
-          </Field>
-        </CardFooter>
+        <form id="login-form" onSubmit={handleSubmit}>
+          <CardHeader>
+            <CardTitle className="text-3xl">Welcome to FaithStep</CardTitle>
+            <CardDescription>Please log in to your account.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-4 my-5">
+            <Controller
+              name="email"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor={field.name}>Email</FieldLabel>
+                  <Input
+                    {...field}
+                    placeholder="Please enter your email"
+                    // autoComplete="off"
+                    type="email"
+                  />
+                </Field>
+              )}
+            />
+            <Controller
+              name="password"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor={field.name}>Password</FieldLabel>
+                  <Input
+                    {...field}
+                    placeholder="Please enter your password"
+                    // autoComplete="off"
+                    type="password"
+                  />
+                </Field>
+              )}
+            />
+          </CardContent>
+          <CardFooter>
+            <Field orientation="vertical">
+              <Button
+                className="cursor-pointer w-full"
+                type="submit"
+                form="login-form"
+              >
+                Login
+              </Button>
+              <a
+                className="cursor-pointer w-full text-center"
+                type="button"
+                onClick={() => route.push("/auth/signup")}
+              >
+                Signup
+              </a>
+            </Field>
+          </CardFooter>
+        </form>
       </Card>
     </>
   );
