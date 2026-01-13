@@ -20,9 +20,8 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { LoginFormSchema } from "../type";
 import { useRouter } from "next/navigation";
-import { login } from "../api/auth";
+import { loginWithPassword } from "../api/auth";
 import { Controller, useForm } from "react-hook-form";
 
 export function LoginForm() {
@@ -35,7 +34,7 @@ export function LoginForm() {
   });
 
   const handleSubmit = form.handleSubmit(async (data) => {
-    const { user, session } = await login(data);
+    const { user, session } = await loginWithPassword(data);
     console.log({ user, session });
     if (!user && !session) {
       toast.error("Login failed. Please check your credentials.");

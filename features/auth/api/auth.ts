@@ -1,15 +1,15 @@
-import { supabase } from "@/lib/supabase";
+import { createClientBrowser } from "@/lib/supabase/client";
 
-export const login = async (payload: { email: string; password: string }) => {
+const supabase = createClientBrowser();
+
+export const loginWithPassword = async (payload: {
+  email: string;
+  password: string;
+}) => {
   // Hook logic here
 
   const { data } = await supabase.auth.signInWithPassword(payload);
   return data;
 };
 
-// const useSupabaseSignup = () => {
-//   // Hook logic here
-//   console.log("useSupabaseSignup");
-// };
-
-// const useSupabase``
+export const signOut = async () => await supabase.auth.signOut();
