@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { signUpWithPassword } from "../api";
 
 const SignupForm = () => {
   const route = useRouter();
@@ -30,9 +31,17 @@ const SignupForm = () => {
     },
   });
 
-  const handleSubmit = form.handleSubmit((data) => {
-    console.log(data);
-    toast("Signing up...");
+  const handleSubmit = form.handleSubmit(async (data) => {
+    const { data: signUpData } = await signUpWithPassword({
+      email: data.email,
+      password: data.password,
+    });
+    console.log(signUpData, "data");
+    if (!signUpData.user) {
+      toast.error("Signup failed. Please try again.");
+      return;
+    }
+    route.push("/auth/confirm-email");
   });
 
   const isPasswordMatch = (password: string, confirmPassword: string) => {
@@ -168,85 +177,6 @@ const SignupForm = () => {
                 </Field>
               )}
             />
-            {/* <FieldGroup>
-              <form.Field name="email">
-                {(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-                  return (
-                    <Field data-invalid={isInvalid}>
-                      <FieldLabel htmlFor={field.name}>Email</FieldLabel>
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        value={field.state.value}
-                        onBlur={field.handleBlur}
-                        onChange={(e) => field.handleChange(e.target.value)}
-                        aria-invalid={isInvalid}
-                        placeholder="Please enter your email"
-                        autoComplete="off"
-                        type="email"
-                      />
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              </form.Field>
-              <form.Field name="password">
-                {(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-                  return (
-                    <Field data-invalid={isInvalid}>
-                      <FieldLabel htmlFor={field.name}>Password</FieldLabel>
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        value={field.state.value}
-                        onBlur={field.handleBlur}
-                        onChange={(e) => field.handleChange(e.target.value)}
-                        aria-invalid={isInvalid}
-                        placeholder="Please enter your password"
-                        autoComplete="off"
-                        type="password"
-                      />
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              </form.Field>
-              <form.Field name="confirmPassword">
-                {(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-                  return (
-                    <Field data-invalid={isInvalid}>
-                      <FieldLabel htmlFor={field.name}>
-                        Confirm Password
-                      </FieldLabel>
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        value={field.state.value}
-                        onBlur={field.handleBlur}
-                        onChange={(e) => field.handleChange(e.target.value)}
-                        aria-invalid={isInvalid}
-                        placeholder="Please retype your password"
-                        autoComplete="off"
-                        type="password"
-                      />
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              </form.Field>
-            </FieldGroup> */}
           </CardContent>
           <CardFooter>
             <Field orientation="vertical">

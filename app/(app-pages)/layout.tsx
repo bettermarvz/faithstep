@@ -1,6 +1,6 @@
 "use client";
 
-import NavigationBar from "@/features/navigation/component/NavigationBar";
+import NavigationBar from "@/features/navigation/components/NavigationBar";
 import { usePathname } from "next/navigation";
 import React from "react";
 

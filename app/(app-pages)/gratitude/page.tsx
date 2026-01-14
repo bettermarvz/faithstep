@@ -1,5 +1,5 @@
-import GratitudeEditor from "@/features/gratitudes/component/GratitudeEditor";
-import GratitudeWall from "@/features/gratitudes/component/GratitudeWall";
+import GratitudeEditor from "@/features/gratitudes/components/GratitudeEditor";
+import GratitudeWall from "@/features/gratitudes/components/GratitudeWall";
 import React from "react";
 
 const Gratitude = () => {

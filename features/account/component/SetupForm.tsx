@@ -1,9 +1,5 @@
 "use client";
 
-import * as React from "react";
-import { toast, Toaster } from "sonner";
-import * as z from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,18 +9,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { useRouter } from "next/navigation";
-import { loginWithPassword } from "../api/auth";
+import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { Toaster } from "sonner";
 
-export function LoginForm() {
+const SetupForm = ({ token }: { token: string }) => {
+  if (!token) {
+    console.log("Setup token:", token);
+  }
+  const [loading, setLoading] = useState(false);
   const route = useRouter();
   const form = useForm({
     defaultValues: {
@@ -34,15 +31,11 @@ export function LoginForm() {
   });
 
   const handleSubmit = form.handleSubmit(async (data) => {
-    const { user, session } = await loginWithPassword(data);
-    console.log({ user, session });
-    if (!user && !session) {
-      toast.error("Login failed. Please check your credentials.");
-      return;
-    }
-    toast.success(`Welcome back, ${user}!`, { duration: 5000 });
+    setLoading(true);
+    // const { user, session } = await loginWithPassword(data);
+    // console.log({ user, session });
     route.push("/overview");
-    // toast("Signing up...");
+    setLoading(false);
   });
 
   return (
@@ -51,8 +44,10 @@ export function LoginForm() {
       <Card className="w-full sm:max-w-md">
         <form id="login-form" onSubmit={handleSubmit}>
           <CardHeader>
-            <CardTitle className="text-3xl">Welcome to FaithStep</CardTitle>
-            <CardDescription>Please log in to your account.</CardDescription>
+            <CardTitle className="text-3xl">Setup your account</CardTitle>
+            <CardDescription>
+              Please enter your account details.
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4 my-5">
             <Controller
@@ -93,6 +88,7 @@ export function LoginForm() {
                 type="submit"
                 form="login-form"
               >
+                {loading ? <Spinner /> : null}
                 Login
               </Button>
               <a
@@ -108,4 +104,6 @@ export function LoginForm() {
       </Card>
     </>
   );
-}
+};
+
+export default SetupForm;
