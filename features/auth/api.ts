@@ -2,6 +2,21 @@ import { createClientBrowser } from "@/lib/supabase/client";
 
 const supabase = createClientBrowser();
 
+export const signUpWithPassword = async (payload: {
+  email: string;
+  password: string;
+}) => {
+  const { data, error } = await supabase.auth.signUp({
+    email: payload.email,
+    password: payload.password,
+    options: {
+      emailRedirectTo: `${window.location.origin}/account/setup`,
+    },
+  });
+
+  return { data, error };
+};
+
 export const loginWithPassword = async (payload: {
   email: string;
   password: string;

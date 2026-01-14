@@ -5,7 +5,7 @@ import NavigationLogo from "./NavigationLogo";
 import Notification from "./Notification";
 import { MenuItem } from "../type";
 import { Button } from "@/components/ui/button";
-import { signOut } from "@/features/auth/api/auth";
+import { signOut } from "@/features/auth/api";
 import { useRouter } from "next/navigation";
 
 const NavigationBar = ({ menuItems }: { menuItems: MenuItem[] }) => {

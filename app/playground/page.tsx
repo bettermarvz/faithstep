@@ -1,5 +1,5 @@
 import Avatar from "@/components/global/Avatar";
-import GratitudeCard from "@/features/gratitudes/component/GratitudeCard";
+import GratitudeCard from "@/features/gratitudes/components/GratitudeCard";
 import React from "react";
 
 const PlayGroundPage = () => {
