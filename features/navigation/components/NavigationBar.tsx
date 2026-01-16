@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 const NavigationBar = ({ menuItems }: { menuItems: MenuItem[] }) => {
   const route = useRouter();
   return (
-    <header className="flex justify-between items-center px-8 py-5 rounded-full bg-white drop-shadow-lg drop-shadow-gray-100">
+    <header className="flex justify-between items-center px-8 py-5 rounded-full bg-white drop-shadow-lg mb-5">
       <div className="flex space-x-[46px] items-center">
         <NavigationLogo />
         <NavigationMenu items={menuItems} />
