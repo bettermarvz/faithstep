@@ -32,3 +32,24 @@ export const getChapter = async (
     chapters: await getMaxChapter(bk),
   };
 };
+
+
+export const getVerse = async (
+  book: string,
+  chapter: number,
+  verse: number,
+) => {
+  const bk = book.toLocaleLowerCase();
+  const result = await fetch(
+    `https://cdn.jsdelivr.net/gh/wldeh/bible-api/bibles/en-kjv/books/${bk}/chapters/${chapter}/verses/${verse}.json`,
+  );
+
+  if (!result) {
+    throw new Error("failed to fetch bible");
+  }
+
+  return {
+    data: await result.json(),
+    chapters: await getMaxChapter(bk),
+  };
+};

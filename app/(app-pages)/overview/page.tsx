@@ -1,9 +1,23 @@
+"use client";
+
+import { getVerse } from "@/features/bible/api";
 import DailyChallengeCard from "@/features/dailychallenge/component/DailyChallengeCard";
 import DailyStepCard from "@/features/dailystep/component/DailyStepCard";
 import GratitudeCard from "@/features/gratitudes/components/GratitudeCard";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Overview = () => {
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await getVerse("john", 3, 16);
+      console.log(res);
+      return res;
+    };
+    fetch();
+
+    return () => {};
+  }, []);
+
   return (
     <>
       <div className="flex gap-5">
