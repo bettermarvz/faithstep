@@ -1,8 +1,24 @@
+import { getGratitudes } from "@/features/gratitudes/api";
 import GratitudeEditor from "@/features/gratitudes/components/GratitudeEditor";
 import GratitudeWall from "@/features/gratitudes/components/GratitudeWall";
-import React from "react";
+import React, { use } from "react";
 
 const Gratitude = () => {
+  const grat = use(getGratitudes());
+
+  console.log(grat, "Hello 111111111");
+
+  // const [gratitude, setGratitude] = useState()
+  // useEffect(() => {
+  //   const fetch = async () => {
+  //     const res = await getGratitudes();
+  //     setGratitude(res)
+  //   };
+
+  //   fetch();
+  //   return () => {};
+  // }, []);
+
   return (
     <div>
       <div className="w-full flex flex-col items-center gap-10 mt-[115px]">

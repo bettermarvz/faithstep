@@ -10,6 +10,9 @@ export const signUpWithPassword = async (payload: {
     email: payload.email,
     password: payload.password,
     options: {
+      data: {
+        displayName: "Marvin Zarate",
+      },
       emailRedirectTo: `${window.location.origin}/account/setup`,
     },
   });

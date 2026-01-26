@@ -7,10 +7,13 @@ import GratitudeCard from "@/features/gratitudes/components/GratitudeCard";
 import React, { useEffect, useState } from "react";
 
 const Overview = () => {
+
+  const [verse, setVerse] = useState("");
   useEffect(() => {
     const fetch = async () => {
       const res = await getVerse("john", 3, 16);
       console.log(res);
+      setVerse(res.data.text);
       return res;
     };
     fetch();
@@ -25,7 +28,7 @@ const Overview = () => {
           <DailyChallengeCard />
         </div>
         <div className="w-[35%]">
-          <DailyStepCard />
+          <DailyStepCard text={verse} />
         </div>
       </div>
       <div className="mt-10">
