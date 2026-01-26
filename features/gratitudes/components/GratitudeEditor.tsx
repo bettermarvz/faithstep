@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import React from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { toast } from "sonner";
+import { postGratitude } from "../api";
 
 const GratitudeEditor = ({ charLimit = 280 }: { charLimit?: number }) => {
   const form = useForm({
@@ -24,6 +25,13 @@ const GratitudeEditor = ({ charLimit = 280 }: { charLimit?: number }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = (data: any) => {
     console.log("submitted", data);
+    const res = postGratitude({
+      gratitude: data.post,
+      isAnonymous: data.isAnonymous,
+    });
+    if (res) {
+      console.log(res);
+    }
     toast("You submitted the following values:", {
       description: (
         <pre className="bg-code text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md p-4">
