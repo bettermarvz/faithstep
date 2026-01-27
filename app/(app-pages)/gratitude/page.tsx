@@ -4,7 +4,7 @@ import GratitudeWall from "@/features/gratitudes/components/GratitudeWall";
 import React, { use } from "react";
 
 const Gratitude = () => {
-  const grat = use(getGratitudes());
+  const grat = use(getGratitudes()); // server
 
   console.log(grat, "Hello 111111111");
 
