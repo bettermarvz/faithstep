@@ -35,6 +35,7 @@ const SignupForm = () => {
     const { data: signUpData } = await signUpWithPassword({
       email: data.email,
       password: data.password,
+      name: data.name,
     });
     console.log(signUpData, "data");
     if (!signUpData.user) {

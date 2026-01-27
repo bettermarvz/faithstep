@@ -5,13 +5,14 @@ const supabase = createClientBrowser();
 export const signUpWithPassword = async (payload: {
   email: string;
   password: string;
+  name: string;
 }) => {
   const { data, error } = await supabase.auth.signUp({
     email: payload.email,
     password: payload.password,
     options: {
       data: {
-        displayName: "Marvin Zarate",
+        displayName: payload.name,
       },
       emailRedirectTo: `${window.location.origin}/account/setup`,
     },

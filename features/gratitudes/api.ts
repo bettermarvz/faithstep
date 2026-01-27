@@ -59,16 +59,16 @@ export const getGratitudes = async () => {
 
   try {
     const { data, error } = await supabase.from("gratitude_posts").select(`
-    id,
-    content,
-    createdat,
-    isanonymous,
+    *,
     user_profiles (
-      id,
-      displayname,
-      email
+      id
     )
   `);
+
+    if (error) {
+      console.error("Query error:", error);
+      return [];
+    }
 
     if (sessionError) {
       console.error("Session error:", sessionError);
