@@ -40,7 +40,7 @@ export function LoginForm() {
   const handleSubmit = form.handleSubmit(async (data) => {
     setLoading(true);
     const { user, session } = await loginWithPassword(data);
-    console.log({ user, session });
+    // console.log({ user, session });
     if (!user && !session) {
       toast.error("Login failed. Please check your credentials.");
       setLoading(false);
