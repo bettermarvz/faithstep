@@ -1,13 +1,13 @@
 import { createClientBrowser } from "@/lib/supabase/client";
 
-const supabase = createClientBrowser();
+const supabaseClient = createClientBrowser();
 
 export const signUpWithPassword = async (payload: {
   email: string;
   password: string;
   name: string;
 }) => {
-  const { data, error } = await supabase.auth.signUp({
+  const { data, error } = await supabaseClient.auth.signUp({
     email: payload.email,
     password: payload.password,
     options: {
@@ -27,8 +27,8 @@ export const loginWithPassword = async (payload: {
 }) => {
   // Hook logic here
 
-  const { data } = await supabase.auth.signInWithPassword(payload);
+  const { data } = await supabaseClient.auth.signInWithPassword(payload);
   return data;
 };
 
-export const signOut = async () => await supabase.auth.signOut();
+export const signOut = async () => await supabaseClient.auth.signOut();

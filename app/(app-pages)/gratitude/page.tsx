@@ -4,9 +4,9 @@ import GratitudeWall from "@/features/gratitudes/components/GratitudeWall";
 import React, { use } from "react";
 
 const Gratitude = () => {
-  const grat = use(getGratitudes()); // server
+  const gratitudes = use(getGratitudes()); // server
 
-  console.log(grat, "Hello 111111111");
+  // console.log(grat, "Hello 111111111");
 
   // const [gratitude, setGratitude] = useState()
   // useEffect(() => {
@@ -31,10 +31,10 @@ const Gratitude = () => {
           </p>
         </div>
         <GratitudeEditor charLimit={280} />
-        <GratitudeWall />
+        <GratitudeWall gratitudes={gratitudes} />
       </div>
     </div>
   );
-};
+};;
 
 export default Gratitude;

@@ -1,16 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import GratitudeCard from "./GratitudeCard";
 
-const GratitudeWall = () => {
+const GratitudeWall = ({ gratitudes }: { gratitudes: any }) => {
+  console.log("11111111111111", gratitudes);
   return (
     <div className="grid grid-cols-3 gap-5">
-      <GratitudeCard
-        name="Marvin Zarate"
-        message="Feeling grateful today for God’s faithfulness. Even in the smallest moments, He shows His love in ways I don’t deserve. Thank You, Lord, for Your goodness that carries me through every season. 🙏✨"
-        timePosted="8:24 PM"
-        reactions={12}
-      />
-      <GratitudeCard
+      {gratitudes?.map((item: any) => (
+        <GratitudeCard
+          key={item.id}
+          name={item.user_profiles.displayname}
+          message={item.content}
+          timePosted="8:24 PM"
+          reactions={12}
+        />
+      ))}
+
+      {/* <GratitudeCard
         name="Alice Johnson"
         message="Today, I’m thankful for the gift of friendship. My friends have been a source of joy, support, and laughter in my life. Grateful for the memories we create together and the love we share. Here’s to many more adventures ahead! 🌟👭"
         timePosted="Yesterday"
@@ -45,7 +51,7 @@ const GratitudeWall = () => {
         message="Feeling blessed for the support of my family. Their unwavering love and encouragement have been my anchor through life’s ups and downs. Thank You, God, for the gift of family and the joy they bring to my life every day. 👨‍👩‍👧‍👦❤️"
         timePosted="2 months ago"
         reactions={25}
-      />
+      /> */}
     </div>
   );
 };

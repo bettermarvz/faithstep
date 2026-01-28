@@ -24,7 +24,6 @@ const GratitudeEditor = ({ charLimit = 280 }: { charLimit?: number }) => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = (data: any) => {
-    console.log("submitted", data);
     const res = postGratitude({
       gratitude: data.post,
       isAnonymous: data.isAnonymous,
