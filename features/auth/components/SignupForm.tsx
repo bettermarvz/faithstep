@@ -37,7 +37,7 @@ const SignupForm = () => {
       password: data.password,
       name: data.name,
     });
-    console.log(signUpData, "data");
+    // console.log(signUpData, "data");
     if (!signUpData.user) {
       toast.error("Signup failed. Please try again.");
       return;

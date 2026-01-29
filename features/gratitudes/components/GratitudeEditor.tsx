@@ -4,12 +4,15 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Field } from "@/components/ui/field";
 import { Form } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-import React from "react";
+import React, { useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { toast } from "sonner";
-import { postGratitude } from "../api";
+import { postGratitude, useGratitude } from "../api";
+import { Loader } from "lucide-react";
 
 const GratitudeEditor = ({ charLimit = 280 }: { charLimit?: number }) => {
+  const { mutateGratitude } = useGratitude();
+  const [loading, setLoading] = useState(false);
   const form = useForm({
     defaultValues: {
       post: "",
@@ -23,28 +26,32 @@ const GratitudeEditor = ({ charLimit = 280 }: { charLimit?: number }) => {
   const charCount = postValue.length;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSubmit = (data: any) => {
-    const res = postGratitude({
-      gratitude: data.post,
-      isAnonymous: data.isAnonymous,
-    });
-    if (res) {
-      console.log(res);
+  const handleSubmit = async (data: any) => {
+    console.log("hello logs");
+    setLoading(true);
+    try {
+      await postGratitude({
+        gratitude: data.post,
+        isAnonymous: data.isAnonymous,
+      });
+
+      console.log("222222222222222222222");
+      await mutateGratitude();
+      form.reset();
+      setLoading(false);
+      toast("Successfully created!", {
+        position: "bottom-right",
+        classNames: {
+          content: "flex flex-col gap-2",
+        },
+        style: {
+          "--border-radius": "calc(var(--radius)  + 4px)",
+        } as React.CSSProperties,
+      });
+    } catch (error) {
+      setLoading(false);
+      return;
     }
-    toast("You submitted the following values:", {
-      description: (
-        <pre className="bg-code text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md p-4">
-          <code>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-      position: "bottom-right",
-      classNames: {
-        content: "flex flex-col gap-2",
-      },
-      style: {
-        "--border-radius": "calc(var(--radius)  + 4px)",
-      } as React.CSSProperties,
-    });
   };
 
   return (
@@ -93,6 +100,7 @@ const GratitudeEditor = ({ charLimit = 280 }: { charLimit?: number }) => {
          transition-all duration-200 bg-primary-500 hover:bg-primary-600 `}
               type="submit"
             >
+              {loading && <Loader />}
               Post
             </button>
           </div>

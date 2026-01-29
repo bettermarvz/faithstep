@@ -1,23 +1,14 @@
-import { getGratitudes } from "@/features/gratitudes/api";
+"use client";
+
+import { getGratitudes, useGratitude } from "@/features/gratitudes/api";
 import GratitudeEditor from "@/features/gratitudes/components/GratitudeEditor";
 import GratitudeWall from "@/features/gratitudes/components/GratitudeWall";
-import React, { use } from "react";
+import React, { Suspense, use } from "react";
 
 const Gratitude = () => {
-  const gratitudes = use(getGratitudes()); // server
-
-  // console.log(grat, "Hello 111111111");
-
-  // const [gratitude, setGratitude] = useState()
-  // useEffect(() => {
-  //   const fetch = async () => {
-  //     const res = await getGratitudes();
-  //     setGratitude(res)
-  //   };
-
-  //   fetch();
-  //   return () => {};
-  // }, []);
+  // const gratitudes = use(getGratitudes()); // server
+  const { data, isLoading } = useGratitude();
+  console.log(data, "hahah");
 
   return (
     <div>
@@ -31,10 +22,14 @@ const Gratitude = () => {
           </p>
         </div>
         <GratitudeEditor charLimit={280} />
-        <GratitudeWall gratitudes={gratitudes} />
+        {isLoading ? (
+          <div>Loading All Gratitude</div>
+        ) : (
+          <GratitudeWall gratitudes={data} />
+        )}
       </div>
     </div>
   );
-};;
+};
 
 export default Gratitude;

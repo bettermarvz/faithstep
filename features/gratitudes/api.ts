@@ -1,4 +1,5 @@
 import { createClientBrowser } from "@/lib/supabase/client";
+import useSWR from "swr";
 
 // :::::::::NOTE::::::::
 // These functions should be used in client side only.
@@ -18,37 +19,16 @@ export const postGratitude = async ({
   const {
     data: { session },
   } = await supabaseClient.auth.getSession();
-  console.log("6666666666666666", session);
+  if (!session) {
+    return;
+  }
   await supabaseClient.from("gratitude_posts").insert([
     {
-      userid: session?.user?.id,
+      userid: session.user?.id,
       content: gratitude,
       isanonymous: isAnonymous,
     },
   ]);
-
-  if (!session) return;
-
-  try {
-    const res = await fetch("/api/gratitude", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${session.access_token}`,
-      },
-      body: JSON.stringify({
-        content: gratitude,
-        isAnonymous,
-      }),
-    });
-    console.log(res, "ses");
-
-    if (res.ok) {
-      return res;
-    }
-  } catch (error) {
-    console.error("Gratitude post error:", error);
-  }
 };
 
 export const getGratitudes = async () => {
@@ -69,4 +49,28 @@ export const getGratitudes = async () => {
     console.error("Gratitude fetch error:", error);
     return [];
   }
+};
+
+const fetcher = async () => {
+  const { data, error } = await supabaseClient.from("gratitude_posts").select(`
+    *,
+    user_profiles:userid(*)
+    `);
+  if (error) throw error;
+  return data;
+};
+
+export const useGratitude = () => {
+  const { data, isLoading, mutate } = useSWR("gratitudes", fetcher, {
+    keepPreviousData: true,
+    revalidateOnFocus: false,
+  });
+
+  console.log("111111111", data);
+
+  return {
+    data,
+    isLoading,
+    mutateGratitude: mutate,
+  };
 };
