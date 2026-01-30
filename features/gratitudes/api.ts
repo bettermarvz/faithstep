@@ -52,10 +52,15 @@ export const getGratitudes = async () => {
 };
 
 const fetcher = async () => {
-  const { data, error } = await supabaseClient.from("gratitude_posts").select(`
+  const { data, error } = await supabaseClient
+    .from("gratitude_posts")
+    .select(
+      `
     *,
     user_profiles:userid(*)
-    `);
+    `,
+    )
+    .order("createdat", { ascending: false });
   if (error) throw error;
   return data;
 };
@@ -65,8 +70,6 @@ export const useGratitude = () => {
     keepPreviousData: true,
     revalidateOnFocus: false,
   });
-
-  console.log("111111111", data);
 
   return {
     data,

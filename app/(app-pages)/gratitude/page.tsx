@@ -1,14 +1,11 @@
 "use client";
 
-import { getGratitudes, useGratitude } from "@/features/gratitudes/api";
+import { useGratitude } from "@/features/gratitudes/api";
 import GratitudeEditor from "@/features/gratitudes/components/GratitudeEditor";
 import GratitudeWall from "@/features/gratitudes/components/GratitudeWall";
-import React, { Suspense, use } from "react";
 
 const Gratitude = () => {
-  // const gratitudes = use(getGratitudes()); // server
   const { data, isLoading } = useGratitude();
-  console.log(data, "hahah");
 
   return (
     <div>
