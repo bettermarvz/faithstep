@@ -4,7 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Field } from "@/components/ui/field";
 import { Form } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-import React, { useState } from "react";
+import React, { RefObject, useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { toast } from "sonner";
 import { postGratitude, useGratitude } from "../api";
@@ -35,7 +35,6 @@ const GratitudeEditor = ({ charLimit = 280 }: { charLimit?: number }) => {
         isAnonymous: data.isAnonymous,
       });
 
-      console.log("222222222222222222222");
       await mutateGratitude();
       form.reset();
       setLoading(false);

@@ -51,8 +51,8 @@ export const getGratitudes = async () => {
   }
 };
 
-const fetcher = async () => {
-  const { data, error } = await supabaseClient
+const fetcher = async (limit?: number) => {
+  let query = supabaseClient
     .from("gratitude_posts")
     .select(
       `
@@ -61,15 +61,24 @@ const fetcher = async () => {
     `,
     )
     .order("createdat", { ascending: false });
+  if (typeof limit === "number") {
+    query = query.limit(limit);
+  }
+  const { data, error } = await query;
   if (error) throw error;
   return data;
 };
 
-export const useGratitude = () => {
-  const { data, isLoading, mutate } = useSWR("gratitudes", fetcher, {
-    keepPreviousData: true,
-    revalidateOnFocus: false,
-  });
+export const useGratitude = (limit?: number) => {
+  // change this into infiniteScrolling later
+  const { data, isLoading, mutate } = useSWR(
+    `gratitudes?limit=${limit}`,
+    () => fetcher(limit),
+    {
+      keepPreviousData: true,
+      revalidateOnFocus: false,
+    },
+  );
 
   return {
     data,
