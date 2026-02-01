@@ -9,7 +9,11 @@ const GratitudeWall = ({ gratitudes }: { gratitudes: any }) => {
       {gratitudes?.map((item: any) => (
         <GratitudeCard
           key={item.id}
-          name={item.user_profiles.displayname}
+          name={
+            item.isanonymous
+              ? item.user_profiles.anonymous_username
+              : item.user_profiles.displayname
+          }
           message={item.content}
           timePosted={formatThisDate(item.createdat)}
           reactions={12}
