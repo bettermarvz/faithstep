@@ -1,0 +1,230 @@
+[
+  { "book": "Genesis", "chapter": 12, "verse": 2 },
+  { "book": "Genesis", "chapter": 28, "verse": 15 },
+  { "book": "Genesis", "chapter": 50, "verse": 20 },
+
+  { "book": "Exodus", "chapter": 14, "verse": 14 },
+  { "book": "Exodus", "chapter": 33, "verse": 14 },
+
+  { "book": "Deuteronomy", "chapter": 1, "verse": 21 },
+  { "book": "Deuteronomy", "chapter": 6, "verse": 5 },
+  { "book": "Deuteronomy", "chapter": 20, "verse": 4 },
+  { "book": "Deuteronomy", "chapter": 31, "verse": 6 },
+  { "book": "Deuteronomy", "chapter": 31, "verse": 8 },
+
+  { "book": "Joshua", "chapter": 1, "verse": 5 },
+  { "book": "Joshua", "chapter": 1, "verse": 7 },
+  { "book": "Joshua", "chapter": 1, "verse": 8 },
+  { "book": "Joshua", "chapter": 1, "verse": 9 },
+  { "book": "Joshua", "chapter": 23, "verse": 10 },
+
+  { "book": "Judges", "chapter": 6, "verse": 12 },
+
+  { "book": "Ruth", "chapter": 1, "verse": 16 },
+
+  { "book": "1 Samuel", "chapter": 12, "verse": 22 },
+  { "book": "1 Samuel", "chapter": 16, "verse": 7 },
+
+  { "book": "2 Samuel", "chapter": 22, "verse": 2 },
+  { "book": "2 Samuel", "chapter": 22, "verse": 31 },
+
+  { "book": "1 Kings", "chapter": 8, "verse": 56 },
+
+  { "book": "2 Kings", "chapter": 20, "verse": 5 },
+
+  { "book": "1 Chronicles", "chapter": 16, "verse": 11 },
+  { "book": "1 Chronicles", "chapter": 16, "verse": 34 },
+  { "book": "1 Chronicles", "chapter": 28, "verse": 20 },
+
+  { "book": "2 Chronicles", "chapter": 7, "verse": 14 },
+  { "book": "2 Chronicles", "chapter": 15, "verse": 7 },
+  { "book": "2 Chronicles", "chapter": 20, "verse": 17 },
+
+  { "book": "Ezra", "chapter": 10, "verse": 4 },
+
+  { "book": "Nehemiah", "chapter": 1, "verse": 9 },
+  { "book": "Nehemiah", "chapter": 8, "verse": 10 },
+
+  { "book": "Esther", "chapter": 4, "verse": 14 },
+
+  { "book": "Job", "chapter": 5, "verse": 11 },
+  { "book": "Job", "chapter": 19, "verse": 25 },
+  { "book": "Job", "chapter": 42, "verse": 2 },
+
+  { "book": "Psalms", "chapter": 3, "verse": 3 },
+  { "book": "Psalms", "chapter": 4, "verse": 8 },
+  { "book": "Psalms", "chapter": 9, "verse": 9 },
+  { "book": "Psalms", "chapter": 16, "verse": 8 },
+  { "book": "Psalms", "chapter": 18, "verse": 2 },
+  { "book": "Psalms", "chapter": 18, "verse": 32 },
+  { "book": "Psalms", "chapter": 23, "verse": 1 },
+  { "book": "Psalms", "chapter": 23, "verse": 4 },
+  { "book": "Psalms", "chapter": 27, "verse": 1 },
+  { "book": "Psalms", "chapter": 27, "verse": 14 },
+  { "book": "Psalms", "chapter": 28, "verse": 7 },
+  { "book": "Psalms", "chapter": 31, "verse": 24 },
+  { "book": "Psalms", "chapter": 32, "verse": 7 },
+  { "book": "Psalms", "chapter": 34, "verse": 4 },
+  { "book": "Psalms", "chapter": 34, "verse": 19 },
+  { "book": "Psalms", "chapter": 37, "verse": 4 },
+  { "book": "Psalms", "chapter": 46, "verse": 1 },
+  { "book": "Psalms", "chapter": 46, "verse": 10 },
+  { "book": "Psalms", "chapter": 55, "verse": 22 },
+  { "book": "Psalms", "chapter": 56, "verse": 3 },
+  { "book": "Psalms", "chapter": 62, "verse": 1 },
+  { "book": "Psalms", "chapter": 66, "verse": 19 },
+  { "book": "Psalms", "chapter": 71, "verse": 5 },
+  { "book": "Psalms", "chapter": 73, "verse": 26 },
+  { "book": "Psalms", "chapter": 84, "verse": 11 },
+  { "book": "Psalms", "chapter": 91, "verse": 1 },
+  { "book": "Psalms", "chapter": 91, "verse": 4 },
+  { "book": "Psalms", "chapter": 94, "verse": 19 },
+  { "book": "Psalms", "chapter": 103, "verse": 2 },
+  { "book": "Psalms", "chapter": 107, "verse": 1 },
+  { "book": "Psalms", "chapter": 118, "verse": 6 },
+  { "book": "Psalms", "chapter": 118, "verse": 24 },
+  { "book": "Psalms", "chapter": 121, "verse": 1 },
+  { "book": "Psalms", "chapter": 121, "verse": 7 },
+  { "book": "Psalms", "chapter": 138, "verse": 3 },
+  { "book": "Psalms", "chapter": 139, "verse": 14 },
+  { "book": "Psalms", "chapter": 145, "verse": 18 },
+  { "book": "Psalms", "chapter": 147, "verse": 3 },
+
+  { "book": "Proverbs", "chapter": 3, "verse": 5 },
+  { "book": "Proverbs", "chapter": 3, "verse": 6 },
+  { "book": "Proverbs", "chapter": 4, "verse": 23 },
+  { "book": "Proverbs", "chapter": 16, "verse": 3 },
+  { "book": "Proverbs", "chapter": 18, "verse": 10 },
+
+  { "book": "Ecclesiastes", "chapter": 3, "verse": 11 },
+
+  { "book": "Isaiah", "chapter": 9, "verse": 6 },
+  { "book": "Isaiah", "chapter": 12, "verse": 2 },
+  { "book": "Isaiah", "chapter": 26, "verse": 3 },
+  { "book": "Isaiah", "chapter": 40, "verse": 29 },
+  { "book": "Isaiah", "chapter": 40, "verse": 31 },
+  { "book": "Isaiah", "chapter": 41, "verse": 10 },
+  { "book": "Isaiah", "chapter": 41, "verse": 13 },
+  { "book": "Isaiah", "chapter": 43, "verse": 2 },
+  { "book": "Isaiah", "chapter": 49, "verse": 16 },
+  { "book": "Isaiah", "chapter": 54, "verse": 10 },
+  { "book": "Isaiah", "chapter": 55, "verse": 12 },
+  { "book": "Isaiah", "chapter": 58, "verse": 11 },
+
+  { "book": "Jeremiah", "chapter": 1, "verse": 8 },
+  { "book": "Jeremiah", "chapter": 29, "verse": 11 },
+  { "book": "Jeremiah", "chapter": 31, "verse": 25 },
+  { "book": "Jeremiah", "chapter": 32, "verse": 27 },
+
+  { "book": "Lamentations", "chapter": 3, "verse": 22 },
+  { "book": "Lamentations", "chapter": 3, "verse": 23 },
+  { "book": "Lamentations", "chapter": 3, "verse": 31 },
+
+  { "book": "Ezekiel", "chapter": 34, "verse": 26 },
+
+  { "book": "Daniel", "chapter": 3, "verse": 17 },
+  { "book": "Daniel", "chapter": 6, "verse": 23 },
+
+  { "book": "Hosea", "chapter": 6, "verse": 1 },
+
+  { "book": "Joel", "chapter": 2, "verse": 25 },
+
+  { "book": "Amos", "chapter": 5, "verse": 24 },
+
+  { "book": "Micah", "chapter": 6, "verse": 8 },
+  { "book": "Micah", "chapter": 7, "verse": 7 },
+
+  { "book": "Nahum", "chapter": 1, "verse": 7 },
+
+  { "book": "Habakkuk", "chapter": 3, "verse": 17 },
+  { "book": "Habakkuk", "chapter": 3, "verse": 18 },
+
+  { "book": "Zephaniah", "chapter": 3, "verse": 17 },
+
+  { "book": "Haggai", "chapter": 2, "verse": 9 },
+
+  { "book": "Zechariah", "chapter": 4, "verse": 6 },
+
+  { "book": "Malachi", "chapter": 3, "verse": 10 },
+
+  { "book": "Matthew", "chapter": 5, "verse": 14 },
+  { "book": "Matthew", "chapter": 6, "verse": 26 },
+  { "book": "Matthew", "chapter": 7, "verse": 7 },
+  { "book": "Matthew", "chapter": 11, "verse": 28 },
+  { "book": "Matthew", "chapter": 28, "verse": 20 },
+
+  { "book": "Mark", "chapter": 10, "verse": 27 },
+
+  { "book": "Luke", "chapter": 1, "verse": 37 },
+  { "book": "Luke", "chapter": 6, "verse": 38 },
+  { "book": "Luke", "chapter": 12, "verse": 32 },
+
+  { "book": "John", "chapter": 1, "verse": 12 },
+  { "book": "John", "chapter": 3, "verse": 16 },
+  { "book": "John", "chapter": 8, "verse": 12 },
+  { "book": "John", "chapter": 14, "verse": 1 },
+  { "book": "John", "chapter": 14, "verse": 27 },
+  { "book": "John", "chapter": 15, "verse": 11 },
+  { "book": "John", "chapter": 16, "verse": 33 },
+
+  { "book": "Acts", "chapter": 1, "verse": 8 },
+  { "book": "Acts", "chapter": 16, "verse": 31 },
+
+  { "book": "Romans", "chapter": 5, "verse": 8 },
+  { "book": "Romans", "chapter": 8, "verse": 1 },
+  { "book": "Romans", "chapter": 8, "verse": 28 },
+  { "book": "Romans", "chapter": 8, "verse": 38 },
+  { "book": "Romans", "chapter": 15, "verse": 13 },
+
+  { "book": "1 Corinthians", "chapter": 10, "verse": 13 },
+  { "book": "1 Corinthians", "chapter": 15, "verse": 58 },
+
+  { "book": "2 Corinthians", "chapter": 1, "verse": 3 },
+  { "book": "2 Corinthians", "chapter": 4, "verse": 16 },
+  { "book": "2 Corinthians", "chapter": 12, "verse": 9 },
+
+  { "book": "Galatians", "chapter": 2, "verse": 20 },
+  { "book": "Galatians", "chapter": 6, "verse": 9 },
+
+  { "book": "Ephesians", "chapter": 2, "verse": 10 },
+  { "book": "Ephesians", "chapter": 3, "verse": 20 },
+  { "book": "Ephesians", "chapter": 6, "verse": 10 },
+
+  { "book": "Philippians", "chapter": 1, "verse": 6 },
+  { "book": "Philippians", "chapter": 4, "verse": 6 },
+  { "book": "Philippians", "chapter": 4, "verse": 7 },
+  { "book": "Philippians", "chapter": 4, "verse": 13 },
+
+  { "book": "Colossians", "chapter": 1, "verse": 11 },
+
+  { "book": "1 Thessalonians", "chapter": 5, "verse": 11 },
+
+  { "book": "2 Thessalonians", "chapter": 3, "verse": 3 },
+
+  { "book": "1 Timothy", "chapter": 6, "verse": 12 },
+
+  { "book": "2 Timothy", "chapter": 1, "verse": 7 },
+  { "book": "2 Timothy", "chapter": 4, "verse": 17 },
+
+  { "book": "Hebrews", "chapter": 4, "verse": 16 },
+  { "book": "Hebrews", "chapter": 10, "verse": 23 },
+  { "book": "Hebrews", "chapter": 11, "verse": 1 },
+  { "book": "Hebrews", "chapter": 13, "verse": 5 },
+
+  { "book": "James", "chapter": 1, "verse": 5 },
+  { "book": "James", "chapter": 1, "verse": 12 },
+
+  { "book": "1 Peter", "chapter": 5, "verse": 7 },
+  { "book": "1 Peter", "chapter": 5, "verse": 10 },
+
+  { "book": "2 Peter", "chapter": 1, "verse": 4 },
+
+  { "book": "1 John", "chapter": 1, "verse": 9 },
+  { "book": "1 John", "chapter": 3, "verse": 1 },
+  { "book": "1 John", "chapter": 4, "verse": 4 },
+
+  { "book": "Jude", "chapter": 1, "verse": 24 },
+
+  { "book": "Revelation", "chapter": 3, "verse": 20 },
+  { "book": "Revelation", "chapter": 21, "verse": 4 }
+]
