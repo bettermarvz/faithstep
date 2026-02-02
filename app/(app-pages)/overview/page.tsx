@@ -7,6 +7,7 @@ import { getDailyVerse } from "@/features/dailystep/getDailyStep";
 import { useGratitude } from "@/features/gratitudes/api";
 import GratitudeCard from "@/features/gratitudes/components/GratitudeCard";
 import { formatThisDate } from "@/lib/utils";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Overview = () => {
@@ -34,17 +35,22 @@ const Overview = () => {
         <div className="w-[35%]">
           <DailyStepCard
             text={verse}
-            verse={`${book} ${chapter}:${verseNumber}`}
+            book={book}
+            chapter={chapter}
+            verse={verseNumber}
           />
         </div>
       </div>
       <div className="mt-10">
         <div className="flex justify-between min-h-[56px]">
           <h1 className="font-bold text-2xl">Recent Gratitude</h1>
-          <p>{Date()}</p>
+          <p>
+            <Link href="/gratitude">View all</Link>
+          </p>
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-4 w-full">
+          {/* w-full flex flex-col items-center gap-10 mt-[115px] */}
           {gratitude?.map((item) => (
             <GratitudeCard
               key={item.id}

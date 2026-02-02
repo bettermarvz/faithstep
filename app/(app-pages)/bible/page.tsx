@@ -3,15 +3,25 @@
 
 import { getChapter } from "@/features/bible/api";
 import { books } from "@/features/bible/books";
+import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { toLowerCase } from "zod";
 
 const BiblePage = () => {
+  const DEFAULT_PASSAGE = {
+    book: "Genesis",
+    chapter: 1,
+  };
+  const searchParams = useSearchParams();
+
   const [version, setVersion] = useState("en-asv");
-  const [chapter, setChapter] = useState(1);
+  const [chapter, setChapter] = useState(
+    Number(searchParams.get("chapter") ?? DEFAULT_PASSAGE.chapter),
+  );
   const [count, setCount] = useState(0);
   const [verses, setVerses] = useState<any>(null);
-  const [book, setBook] = useState("genesis");
+  const [book, setBook] = useState(
+    searchParams.get("book") ?? DEFAULT_PASSAGE.book,
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,7 +33,7 @@ const BiblePage = () => {
     fetchData();
   }, [version, chapter, book]);
 
-  console.log("current:", verses);
+  console.log("current:", Number(searchParams.get("verse")));
 
   return (
     <div className="px-8">
@@ -54,7 +64,11 @@ const BiblePage = () => {
           className="border p-2 rounded-sm"
         >
           {[...Array(count).keys()].map((i) => (
-            <option key={i} value={i + 1}>
+            <option
+              key={i}
+              value={i + 1}
+              selected={i + 1 === Number(searchParams.get("chapter"))}
+            >
               Chapter {i + 1}
             </option>
           ))}
