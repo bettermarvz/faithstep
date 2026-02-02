@@ -1,3 +1,5 @@
+import verses from "./encouraging-verses.json";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 async function getMaxChapter(book: string) {
   const url = `https://api.github.com/repos/wldeh/bible-api/contents/bibles/en-asv/books/${book}/chapters`;
@@ -32,7 +34,6 @@ export const getChapter = async (
     chapters: await getMaxChapter(bk),
   };
 };
-
 
 export const getVerse = async (
   book: string,
