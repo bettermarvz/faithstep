@@ -4,24 +4,21 @@
 import { getChapter } from "@/features/bible/api";
 import { books } from "@/features/bible/books";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 
-const BiblePage = () => {
+const BiblePage = ({ params }: { params?: any }) => {
   const DEFAULT_PASSAGE = {
     book: "Genesis",
     chapter: 1,
   };
-  const searchParams = useSearchParams();
 
   const [version, setVersion] = useState("en-asv");
   const [chapter, setChapter] = useState(
-    Number(searchParams.get("chapter") ?? DEFAULT_PASSAGE.chapter),
+    Number(params?.get("chapter") ?? DEFAULT_PASSAGE.chapter),
   );
   const [count, setCount] = useState(0);
   const [verses, setVerses] = useState<any>(null);
-  const [book, setBook] = useState(
-    searchParams.get("book") ?? DEFAULT_PASSAGE.book,
-  );
+  const [book, setBook] = useState(params?.get("book") ?? DEFAULT_PASSAGE.book);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +30,7 @@ const BiblePage = () => {
     fetchData();
   }, [version, chapter, book]);
 
-  console.log("current:", Number(searchParams.get("verse")));
+  console.log("current:", Number(params?.get("verse")));
 
   return (
     <div className="px-8">
@@ -67,7 +64,7 @@ const BiblePage = () => {
             <option
               key={i}
               value={i + 1}
-              selected={i + 1 === Number(searchParams.get("chapter"))}
+              selected={i + 1 === Number(params?.get("chapter"))}
             >
               Chapter {i + 1}
             </option>
@@ -92,4 +89,17 @@ const BiblePage = () => {
   );
 };
 
-export default BiblePage;
+const BiblePageWrapper = () => {
+  const params = useSearchParams();
+  return <BiblePage params={params} />;
+};
+
+const BiblePageContainer = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BiblePageWrapper />
+    </Suspense>
+  );
+};
+
+export default BiblePageContainer;

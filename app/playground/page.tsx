@@ -5,7 +5,7 @@ import React from "react";
 const PlayGroundPage = () => {
   return (
     <section>
-      <GratitudeCard />
+      {/* <GratitudeCard /> */}
       <Avatar size="md" label="John Doe" />
       <Avatar label="JD" />
       <Avatar label="Jd" />
