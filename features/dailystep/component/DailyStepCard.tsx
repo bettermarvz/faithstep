@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { today } from "@/lib/utils";
 import { Heart, Share2 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -19,7 +20,7 @@ const DailyStepCard = ({
     <div className="flex flex-col bg-primary-900 text-white p-6 gap-5 rounded-2xl drop-shadow-xl justify-between">
       <div className="flex justify-between min-h-[56px]">
         <h1 className="font-bold text-2xl">Daily Step</h1>
-        <p>January 14, 2026</p>
+        <p>{today()}</p>
       </div>
       <div className="flex flex-col">
         <p className="text-2xl font-light">
@@ -34,9 +35,9 @@ const DailyStepCard = ({
         <p>- {passage ?? "John 3:16"} KJV</p>
       </div>
       <div className="flex justify-end gap-4">
-        <button>
+        {/* <button>
           <Heart />
-        </button>
+        </button> */}
         <button>
           <Share2 />
         </button>

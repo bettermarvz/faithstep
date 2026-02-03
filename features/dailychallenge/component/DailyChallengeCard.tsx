@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { today } from "@/lib/utils";
 import React from "react";
 
 const DailyChallengeCard = () => {
@@ -6,9 +7,9 @@ const DailyChallengeCard = () => {
     <div className="flex flex-col bg-white drop-shadow-xl  p-6 gap-5 rounded-2xl h-full justify-between">
       <div className="flex justify-between min-h-[56px]">
         <h1 className="font-bold text-2xl text-black/60">
-          {`Today's Daily Challenge`}
+          {`Today's Challenge`}
         </h1>
-        <p>January 14, 2026</p>
+        <p>{today()}</p>
       </div>
       <div className="flex flex-col">
         <h2 className="text-[32px] font-bold">Pray for someone today</h2>

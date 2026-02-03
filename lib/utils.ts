@@ -19,3 +19,12 @@ export const formatThisDate = (thisDate: string) => {
     .replace(",", " at");
   return formatted;
 };
+
+export const today = () => {
+  const today = new Date();
+  return today.toLocaleString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+};
