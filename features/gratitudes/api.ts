@@ -1,5 +1,6 @@
 import { createClientBrowser } from "@/lib/supabase/client";
 import useSWR from "swr";
+import { success } from "zod";
 
 // :::::::::NOTE::::::::
 // These functions should be used in client side only.
@@ -53,7 +54,7 @@ export const getGratitudes = async () => {
 
 const fetcher = async (limit?: number) => {
   let query = supabaseClient
-    .from("gratitude_posts")
+    .from("gratitude_with_reactions")
     .select(
       `
     *,
@@ -84,5 +85,76 @@ export const useGratitude = (limit?: number) => {
     data,
     isLoading,
     mutateGratitude: mutate,
+  };
+};
+
+// posting reactions
+export const reactToGratitude = async (
+  gratitude_id: string,
+  type: "heart" | "cared" | "like" | "prayed" | "celebrate",
+) => {
+  const {
+    data: { session },
+  } = await supabaseClient.auth.getSession();
+  if (!session) {
+    return;
+  }
+  console.log({
+    user_id: session.user.id,
+    gratitude_id,
+    types: {
+      user_id: typeof session.user.id,
+      gratitude_id: typeof gratitude_id,
+    },
+  });
+  const { data: existing } = await supabaseClient
+    .from("gratitude_reactions")
+    .select()
+    .eq("user_id", session.user.id)
+    .eq("gratitude_id", gratitude_id)
+    .maybeSingle();
+
+  if (existing) {
+    console.log("existing...", existing);
+    if (existing.type === type) {
+      const { data } = await supabaseClient
+        .from("gratitude_reactions")
+        .delete()
+        .eq("id", existing.id);
+      console.log("deleted", data);
+      return {
+        data,
+      };
+    } else {
+      const { data: reactions } = await supabaseClient
+        .from("gratitude_reactions")
+        .update([
+          {
+            type,
+          },
+        ])
+        .eq("user_id", session.user.id)
+        .eq("gratitude_id", gratitude_id);
+
+      return {
+        reactions,
+      };
+    }
+  }
+
+  console.log("reacting...");
+
+  const { data: reactions } = await supabaseClient
+    .from("gratitude_reactions")
+    .insert([
+      {
+        gratitude_id: gratitude_id,
+        user_id: session.user?.id,
+        type,
+      },
+    ]);
+
+  return {
+    reactions,
   };
 };

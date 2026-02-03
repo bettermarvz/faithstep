@@ -1,13 +1,25 @@
 "use client";
 
-import { useGratitude } from "@/features/gratitudes/api";
+import { reactToGratitude, useGratitude } from "@/features/gratitudes/api";
 import GratitudeEditor from "@/features/gratitudes/components/GratitudeEditor";
 import GratitudeWall from "@/features/gratitudes/components/GratitudeWall";
+import { getCurrentUser } from "@/lib/getUser";
+import { User } from "@supabase/supabase-js";
 import React, { useEffect, useRef, useState } from "react";
 
 const Gratitude = () => {
   const ref = useRef(null);
   const [visibility, setVisibility] = useState(true);
+  const [me, setMe] = useState<User | null>(null);
+  useEffect(() => {
+    const fetchMe = async () => {
+      const me = await getCurrentUser();
+      setMe(me.user);
+    };
+    fetchMe();
+
+    return () => {};
+  }, []);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -23,7 +35,16 @@ const Gratitude = () => {
     return () => {};
     // return observer.disconnect();
   }, []);
-  const { data, isLoading } = useGratitude();
+  const { data, isLoading, mutateGratitude } = useGratitude();
+
+  const handleReact = async (
+    gratitude_id: string,
+    type: "heart" | "cared" | "like" | "prayed" | "celebrate",
+  ) => {
+    console.log("hello", gratitude_id, type);
+    await reactToGratitude(gratitude_id, type);
+    await mutateGratitude();
+  };
 
   return (
     <div>
@@ -42,7 +63,11 @@ const Gratitude = () => {
         {isLoading ? (
           <div>Loading All Gratitude</div>
         ) : (
-          <GratitudeWall gratitudes={data} />
+          <GratitudeWall
+            gratitudes={data}
+            currentUser={me}
+            handleReact={handleReact}
+          />
         )}
         <div className="flex fixed bottom-0 justify-center w-full mb-5">
           {!visibility && <GratitudeEditor charLimit={280} />}
