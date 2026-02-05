@@ -40,10 +40,14 @@ const GratitudeCard = ({
         </div>
         <p className="flex px-6 text-[14px]">{message}</p>
       </div>
-      <div className="px-6 text-[12px] flex items-center gap-1">
+      <div className="px-2 text-[12px] flex items-center gap-2 justify-end">
         <>
-          <button onClick={() => handleReact(id, "heart")}>
+          <button
+            className="cursor-pointer"
+            onClick={() => handleReact(id, "heart")}
+          >
             <LucideHeart
+              width={16}
               color={isDidReactHeart ? "red" : "black"}
               // className={isDidReact ? "bg-red-500" : ""}
             />
@@ -51,8 +55,12 @@ const GratitudeCard = ({
           {hearts || "0"}
         </>
         <>
-          <button onClick={() => handleReact(id, "like")}>
+          <button
+            className="cursor-pointer"
+            onClick={() => handleReact(id, "like")}
+          >
             <ThumbsUp
+              width={16}
               color={isDidReactLike ? "red" : "black"}
               // className={isDidReact ? "bg-red-500" : ""}
             />
