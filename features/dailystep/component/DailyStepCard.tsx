@@ -1,3 +1,4 @@
+import ShareButton from "@/components/global/ShareBtn";
 import { Button } from "@/components/ui/button";
 import { today } from "@/lib/utils";
 import { Heart, Share2 } from "lucide-react";
@@ -35,12 +36,7 @@ const DailyStepCard = ({
         <p>- {passage ?? "John 3:16"} KJV</p>
       </div>
       <div className="flex justify-end gap-4">
-        {/* <button>
-          <Heart />
-        </button> */}
-        <button>
-          <Share2 />
-        </button>
+        <ShareButton book={book} chapter={chapter} verse={verse} text={text} />
         <Link href={`/bible?book=${book}&chapter=${chapter}`}>
           <Button variant="primary">Read full chapter</Button>
         </Link>
