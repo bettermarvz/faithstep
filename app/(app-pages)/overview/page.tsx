@@ -40,7 +40,6 @@ const Overview = () => {
     return () => {};
   }, []);
 
-  console.log(me, "meeeeeeeeee");
 
   const handleReact = async (
     gratitude_id: string,

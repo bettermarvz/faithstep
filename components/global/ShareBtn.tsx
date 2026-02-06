@@ -14,8 +14,7 @@ export default function ShareButton({
   text?: string;
 }) {
   const share = async () => {
-    const url = `http://localhost:3000/bible?book=${book}&chapter=${chapter}&verse=${verse}`;
-    console.log(navigator.share, "nnnnn");
+    const url = `https://faithstep.vercel.app`;
     // 1️⃣ Mobile browsers (best experience)
     if (navigator.share) {
       await navigator.share({
