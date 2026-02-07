@@ -42,7 +42,7 @@ export const getVerse = async (
 ) => {
   const bk = book.toLocaleLowerCase();
   const result = await fetch(
-    `https://cdn.jsdelivr.net/gh/wldeh/bible-api/bibles/en-kjv/books/${bk}/chapters/${chapter}/verses/${verse}.json`,
+    `https://cdn.jsdelivr.net/gh/wldeh/bible-api/bibles/en-asv/books/${bk}/chapters/${chapter}/verses/${verse}.json`,
   );
 
   if (!result) {
