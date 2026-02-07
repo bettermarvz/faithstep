@@ -1,24 +1,11 @@
-"use client";
-
 import { getVerse } from "@/features/bible/api";
 import { getDailyVerse } from "@/features/dailystep/getDailyStep";
-import Head from "next/head";
-import React, { useEffect, useState } from "react";
 
-const Meta = () => {
+const Meta = async () => {
   const { book, chapter, verse: verseNumber } = getDailyVerse();
-  const [verse, setVerse] = useState("");
-  useEffect(() => {
-    const fetch = async () => {
-      const res = await getVerse(book, chapter, verseNumber);
-      console.log(res);
-      setVerse(res.data.text);
-      return res;
-    };
-    fetch();
+  const res = await getVerse(book, chapter, verseNumber);
 
-    return () => {};
-  }, []);
+  const verse = res.data.text;
   return (
     <>
       <meta name="description" content={verse} />
@@ -30,13 +17,11 @@ const Meta = () => {
       <meta property="og:image" content="" />
       <meta property="og:url" content="https://faithstep.vercel.app/" />
       <meta property="og:type" content="website" />
-      {/* <meta name="twitter:card" content="summary_large_image" /> */}
       <meta
         name="twitter:title"
         content="Your daily step to faith from FaithStep app"
       />
       <meta name="twitter:description" content={verse} />
-      {/* <meta name="twitter:image" content="" /> */}
     </>
   );
 };
