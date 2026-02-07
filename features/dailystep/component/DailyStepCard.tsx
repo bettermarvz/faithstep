@@ -33,7 +33,7 @@ const DailyStepCard = ({
             </>
           )}
         </p>
-        <p>- {passage ?? "John 3:16"} KJV</p>
+        <p>- {passage ?? "John 3:16"} ASV</p>
       </div>
       <div className="flex justify-end gap-4">
         <ShareButton book={book} chapter={chapter} verse={verse} text={text} />

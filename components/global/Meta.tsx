@@ -20,8 +20,7 @@ const Meta = () => {
     return () => {};
   }, []);
   return (
-    <Head>
-      <title>Your daily step to faith from FaithStep app</title>
+    <>
       <meta name="description" content={verse} />
       <meta
         property="og:title"
@@ -38,19 +37,7 @@ const Meta = () => {
       />
       <meta name="twitter:description" content={verse} />
       {/* <meta name="twitter:image" content="" /> */}
-    </Head>
-    //   <meta
-    //     property="og:title"
-    //     content="Your daily step to faith from FaithStep app"
-    //   />
-    //   <meta property="og:description" content={verse} />
-    //   {/* <meta property="og:type" content="video.movie" /> */}
-    //   {/* <meta property="og:url" content="https://www.imdb.com/title/tt0117500/" /> */}
-    //   {/* <meta
-    //     property="og:image"
-    //     content="https://ia.media-imdb.com/images/rock.jpg"
-    //   /> */}
-    // </>
+    </>
   );
 };
 
