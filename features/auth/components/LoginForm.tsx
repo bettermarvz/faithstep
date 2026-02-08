@@ -57,7 +57,9 @@ export function LoginForm() {
       <Card className="w-full sm:max-w-md">
         <form id="login-form" onSubmit={handleSubmit}>
           <CardHeader>
-            <CardTitle className="text-3xl">Welcome to FaithStep</CardTitle>
+            <CardTitle className="text-3xl xsm:text-2xl">
+              Welcome to FaithStep
+            </CardTitle>
             <CardDescription>Please log in to your account.</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4 my-5">
@@ -69,7 +71,7 @@ export function LoginForm() {
                   <FieldLabel htmlFor={field.name}>Email</FieldLabel>
                   <Input
                     {...field}
-                    placeholder="Please enter your email"
+                    // placeholder="Please enter your email"
                     // autoComplete="off"
                     type="email"
                   />
@@ -84,7 +86,7 @@ export function LoginForm() {
                   <FieldLabel htmlFor={field.name}>Password</FieldLabel>
                   <Input
                     {...field}
-                    placeholder="Please enter your password"
+                    // placeholder="Please enter your password"
                     // autoComplete="off"
                     type="password"
                   />
@@ -103,7 +105,7 @@ export function LoginForm() {
                 Login
               </Button>
               <a
-                className="cursor-pointer w-full text-center"
+                className="cursor-pointer w-full text-center underline"
                 type="button"
                 onClick={() => route.push("/auth/signup")}
               >

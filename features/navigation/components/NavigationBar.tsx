@@ -18,14 +18,13 @@ const NavigationBar = ({
 }) => {
   const route = useRouter();
 
-  console.log("users details 1111111111:", user?.displayName);
   return (
-    <header className="flex justify-between items-center px-8 py-5 rounded-full bg-white drop-shadow-lg mb-5">
+    <header className="flex justify-between items-center px-8 py-5 rounded-full bg-white drop-shadow-lg mb-5 ">
       <div className="flex space-x-[46px] items-center">
         <NavigationLogo />
         <NavigationMenu items={menuItems} />
       </div>
-      <div className="flex gap-4">
+      <div className="hidden xsm:flex gap-4">
         <Notification />
         <Avatar label={user?.displayName} />
         <Button

@@ -52,11 +52,11 @@ const Overview = () => {
 
   return (
     <>
-      <div className="flex gap-5">
-        <div className="w-[65%] flex-1">
+      <div className="flex flex-col xsm:flex-row gap-5">
+        <div className="w-full xsm:w-[65%] flex-1">
           <DailyChallengeCard />
         </div>
-        <div className="w-[35%]">
+        <div className="w-full xsm:w-[35%]">
           <DailyStepCard
             text={verse}
             book={book}
@@ -73,8 +73,7 @@ const Overview = () => {
           </p>
         </div>
 
-        <div className="flex gap-4 w-full">
-          {/* w-full flex flex-col items-center gap-10 mt-[115px] */}
+        <div className="flex gap-4 w-full flex-wrap xsm:flex-nowrap">
           {gratitude?.map((item) => {
             const reactions =
               item.hearts +
