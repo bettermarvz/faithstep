@@ -46,7 +46,7 @@ const NavigationMenu = ({
     return null;
   }
   return (
-    <div className="flex space-x-6">
+    <div className="space-x-6 hidden xsm:flex">
       {items.map((item, index) => (
         <NavigationMenuItem
           key={index}

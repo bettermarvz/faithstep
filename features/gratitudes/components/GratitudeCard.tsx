@@ -29,7 +29,7 @@ const GratitudeCard = ({
   hearts: number;
 }) => {
   return (
-    <div className="bg-white rounded-[16px] p-3 flex flex-col gap-[10px] shadow-md min-w-[380px] justify-between w-1/3 min-h-[195px]">
+    <div className="bg-white rounded-[16px] p-3 flex flex-col gap-[10px] shadow-md w-full xsm:min-w-[380px] justify-between xsm:w-1/3 min-h-[195px]">
       <div className="flex flex-col">
         <div className="flex justify-between items-center">
           <div className="flex gap-2 items-center">

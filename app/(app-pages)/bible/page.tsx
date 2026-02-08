@@ -33,16 +33,14 @@ const BiblePage = ({ params }: { params?: any }) => {
   console.log("current:", Number(params?.get("verse")));
 
   return (
-    <div className="px-8">
-      <div className="flex gap-4 text-xl py-5">
+    <div className="px-8 w-full">
+      <div className="flex gap-4 text-xl py-5 flex-col w-full xsm:flex-row">
         <select
           onChange={(e) => setVersion(e.currentTarget.value)}
           className="border p-2 rounded-sm"
         >
-          <option value="en-asv">
-            American Standard Version of 1901 [eng] ASV
-          </option>
-          <option value="en-rv">King James Version</option>
+          <option value="en-asv">ASV</option>
+          <option value="en-rv">KJV</option>
         </select>
 
         <select
@@ -77,7 +75,7 @@ const BiblePage = ({ params }: { params?: any }) => {
       <div className="w-full mt-4">
         {verses?.map((item: any) => (
           <p
-            className="text-xl hover:bg-blend-hard-light hover:bg-primary-500/10 py-1 px-3"
+            className="text-xl hover:bg-blend-hard-light hover:bg-primary-500/10 py-2 px-3"
             key={`${item.chapter}-${item.verse}`}
           >
             <sup className="font-bold text-zinc-500">{item.verse}</sup>&nbsp;
