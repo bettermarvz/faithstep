@@ -2,7 +2,9 @@
 "use client";
 
 import NavigationBar from "@/features/navigation/components/NavigationBar";
+import NavigationMobileView from "@/features/navigation/components/NavigationMobileView";
 import UserProvider from "@/features/providers/UserProvider";
+import { MenuProvider } from "@/features/providers/MenuProvider";
 import { getCurrentUser } from "@/lib/getUser";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -50,10 +52,15 @@ const AppPagesLayout = ({ children }: { children?: React.ReactNode }) => {
   });
   return (
     <UserProvider user={user}>
-      <div>
-        <NavigationBar menuItems={MenuItem} user={user} />
-        {children}
-      </div>
+      <MenuProvider>
+        <div>
+          <NavigationBar menuItems={MenuItem} user={user} />
+          <div className="min-h-screen relative">
+            {children}
+            <NavigationMobileView />
+          </div>
+        </div>
+      </MenuProvider>
     </UserProvider>
   );
 };

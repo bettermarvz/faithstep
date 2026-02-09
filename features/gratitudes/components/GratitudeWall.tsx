@@ -17,7 +17,7 @@ const GratitudeWall = ({
   ) => void;
 }) => {
   return (
-    <div className="grid grid-cols-3 gap-5 mb-52">
+    <div className="grid xsm:grid-cols-3 gap-5 mb-52">
       {gratitudes?.map((item: any) => (
         <GratitudeCard
           handleReact={handleReact}

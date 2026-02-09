@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { Menu } from "lucide-react";
 
 const MenuItemProps = {
   label: "Home",
@@ -60,7 +61,7 @@ const NavigationMenu = ({
 };
 
 NavigationMenu.defaultProps = {
-  items: [{ label: "Home", link: "/home", active: true }],
+  items: [{ label: "Overview", link: "/overview", active: true }],
 };
 
 export default NavigationMenu;
