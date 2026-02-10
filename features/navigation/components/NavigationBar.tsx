@@ -17,7 +17,7 @@ const NavigationBar = ({
 }: {
   menuItems: MenuItem[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  user: any;
+  user?: any;
 }) => {
   const route = useRouter();
   const { toggleMenu } = useMenu();
@@ -28,19 +28,32 @@ const NavigationBar = ({
         <NavigationLogo />
         <NavigationMenu items={menuItems} />
       </div>
-      <div className="hidden xsm:flex gap-4">
-        <Notification />
-        <Avatar label={user?.displayName} />
-        <Button
-          className="cursor-pointer"
-          onClick={() => {
-            signOut();
-            route.push("/auth/login");
-          }}
-        >
-          Logout
-        </Button>
-      </div>
+      {user ? (
+        <div className="hidden xsm:flex gap-4">
+          <Notification />
+          <Avatar label={user?.displayName} />
+          <Button
+            className="cursor-pointer"
+            onClick={() => {
+              signOut();
+              route.push("/auth/login");
+            }}
+          >
+            Logout
+          </Button>
+        </div>
+      ) : (
+        <div className="hidden xsm:flex gap-4">
+          <Button
+            className="cursor-pointer"
+            onClick={() => {
+              route.push("/auth/login");
+            }}
+          >
+            Login
+          </Button>
+        </div>
+      )}
       <button
         onClick={toggleMenu}
         className="xsm:hidden flex flex-col gap-1.5 p-2"

@@ -6,19 +6,19 @@ import { getDailyVerse } from "@/features/dailystep/getDailyStep";
 import { useEffect, useState } from "react";
 
 const Home = () => {
-  const { book, chapter, verse: verseNumber } = getDailyVerse();
   const [verse, setVerse] = useState("");
   useEffect(() => {
     const fetch = async () => {
+      const { book, chapter, verse: verseNumber } = getDailyVerse();
       const res = await getVerse(book, chapter, verseNumber);
       console.log(res);
       setVerse(res.data.text);
       return res;
     };
     fetch();
-
-    return () => {};
   }, []);
+
+  const { book, chapter, verse: verseNumber } = getDailyVerse();
   return (
     <>
       <DailyStepCard

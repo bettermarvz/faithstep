@@ -50,6 +50,7 @@ export const getVerse = async (
 
   const result = await fetch(
     `https://cdn.jsdelivr.net/gh/wldeh/bible-api/bibles/en-asv/books/${bk}/chapters/${chapter}/verses/${verse}.json`,
+    { cache: "no-store" },
   );
 
   if (!result) {

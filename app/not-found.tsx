@@ -6,7 +6,7 @@ const NotFoundPage = () => {
   return (
     <div className="h-screen w-screen flex justify-center items-center gap-4">
       <h1 className="text-6xl">Page Not Found</h1>
-      <Link href="/overview">
+      <Link href="/">
         <Button>Go Back Home</Button>
       </Link>
     </div>
