@@ -1,11 +1,20 @@
 import { getVerse } from "@/features/bible/api";
 import { getDailyVerse } from "@/features/dailystep/getDailyStep";
+import { useEffect, useState } from "react";
 
-const Meta = async () => {
+const Meta = () => {
   const { book, chapter, verse: verseNumber } = getDailyVerse();
-  const res = await getVerse(book, chapter, verseNumber);
+  const [verseText, setVerseText] = useState("");
+  useEffect(() => {
+    const fetchVerse = async () => {
+      const res = await getVerse(book, chapter, verseNumber);
+      setVerseText(res.data.text);
+    };
+    fetchVerse();
+    return () => {};
+  }, []);
 
-  const verse = res.data.text;
+  const verse = verseText;
   return (
     <>
       <meta name="description" content={verse} />

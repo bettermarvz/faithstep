@@ -17,7 +17,7 @@ const NavigationBar = ({
 }: {
   menuItems: MenuItem[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  user?: any;
+  user: any;
 }) => {
   const route = useRouter();
   const { toggleMenu } = useMenu();
