@@ -42,6 +42,7 @@ export default function RootLayout({
                 { label: "Home", link: "/", active: true },
                 { label: "About", link: "/about" },
               ]}
+              user={null}
             />
           </MenuProvider>
         )}
