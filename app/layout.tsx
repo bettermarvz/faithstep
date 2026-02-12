@@ -46,7 +46,7 @@ export default function RootLayout({
             />
           </MenuProvider>
         )}
-        <main className=" pt-6 flex flex-col gap-8">{children}</main>
+        <main className=" xsm:pt-6 flex flex-col gap-8">{children}</main>
       </body>
     </html>
   );

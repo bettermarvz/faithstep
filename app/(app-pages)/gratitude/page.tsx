@@ -49,7 +49,7 @@ const Gratitude = () => {
   return (
     <div>
       <div className="w-full flex flex-col items-center gap-10 xsm:mt-[115px]">
-        <div className="flex justify-center flex-col gap-3">
+        <div className="justify-center flex-col gap-3 hidden xsm:flex">
           <h1 className="text-2xl font-bold text-center">
             Share Your Gratitude 🙏
           </h1>
@@ -57,7 +57,7 @@ const Gratitude = () => {
             What are you thankful for today?
           </p>
         </div>
-        <div className="flex justify-center w-full" ref={ref}>
+        <div className="hidden xsm:flex justify-center w-full" ref={ref}>
           <GratitudeEditor charLimit={280} />
         </div>
         {isLoading ? (
