@@ -1,7 +1,28 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+function isMobile(userAgent: string) {
+  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
+    userAgent,
+  );
+}
+
 export async function updateSession(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    pathname.includes(".")
+  ) {
+    return NextResponse.next();
+  }
+
+  const auth = [
+    "/auth/login",
+    "/auth/signup",
+    "/auth/confirm-email",
+    "/account/setup",
+  ];
   let supabaseResponse = NextResponse.next({
     request,
   });
@@ -41,25 +62,39 @@ export async function updateSession(request: NextRequest) {
 
   const user = data?.claims;
 
-  if (
-    !user &&
-    !request.nextUrl.pathname.startsWith("/auth/login") &&
-    !request.nextUrl.pathname.startsWith("/auth/signup") &&
-    !request.nextUrl.pathname.startsWith("/auth/confirm-email") &&
-    !request.nextUrl.pathname.startsWith("/account/setup") &&
-    !request.nextUrl.pathname.startsWith("/")
-  ) {
-    // no user, potentially respond by redirecting the user to the login page
-    const url = request.nextUrl.clone();
-    url.pathname = "/";
-    return NextResponse.redirect(url);
-  }
+  const ua = request.headers.get("user-agent") || "";
+  const mobile = isMobile(ua);
 
-  if (user && request.nextUrl.pathname === "/") {
-    const url = request.nextUrl.clone();
-    url.pathname = "/overview";
-    return NextResponse.redirect(url);
+  const url = request.nextUrl.clone();
+
+  console.log("User Agent:", ua);
+  console.log("Is Mobile:", pathname, mobile);
+
+  if (mobile && !pathname.startsWith("/auth")) {
+    url.pathname = `/mob${pathname}`;
+  } else {
+    url.pathname = pathname;
   }
+  return NextResponse.rewrite(url);
+  // if (
+  //   !user &&
+  //   !request.nextUrl.pathname.startsWith("/auth/login") &&
+  //   !request.nextUrl.pathname.startsWith("/auth/signup") &&
+  //   !request.nextUrl.pathname.startsWith("/auth/confirm-email") &&
+  //   !request.nextUrl.pathname.startsWith("/account/setup") &&
+  //   !request.nextUrl.pathname.startsWith("/")
+  // ) {
+  //   // no user, potentially respond by redirecting the user to the login page
+  //   const url = request.nextUrl.clone();
+  //   url.pathname = "/";
+  //   return NextResponse.redirect(url);
+  // }
+
+  // if (user && request.nextUrl.pathname === "/") {
+  //   const url = request.nextUrl.clone();
+  //   url.pathname = "/overview";
+  //   return NextResponse.redirect(url);
+  // }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is. If you're
   // creating a new response object with NextResponse.next() make sure to:

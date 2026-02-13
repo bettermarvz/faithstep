@@ -27,7 +27,7 @@ const GratitudeCardMobile = ({
   hearts: number;
 }) => {
   return (
-    <div className="w-screen h-screen border flex justify-between items-center snap-start p-10">
+    <div className="w-screen h-screen border flex justify-between items-center snap-start">
       <p className="px-10 h-2/3 w-full text-2xl">{message}</p>
     </div>
   );
