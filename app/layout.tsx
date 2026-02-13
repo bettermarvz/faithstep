@@ -33,7 +33,7 @@ export default function RootLayout({
         <Meta />
       </head>
       <body
-        className={`${inter.className} max-w-[1258px] mx-auto px-3 sm:px-6`}
+        className={`${inter.className} max-w-[1258px] mx-auto px-0 sm:px-6`}
       >
         {!excludeLayoutRoutes.includes(pathname) && (
           <MenuProvider>
