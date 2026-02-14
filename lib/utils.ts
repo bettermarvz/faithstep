@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const formatThisDate = (thisDate: string) => {
+export const formatThisDate = (thisDate: string, short: boolean = false) => {
   const date = new Date(thisDate);
 
   const formatted = date
@@ -17,7 +17,13 @@ export const formatThisDate = (thisDate: string) => {
       hour12: true,
     })
     .replace(",", " at");
-  return formatted;
+
+  const shortFormat = date.toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
+
+  return short ? shortFormat : formatted;
 };
 
 export const today = () => {
