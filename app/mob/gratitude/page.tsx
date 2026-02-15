@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useGratitude } from "@/features/gratitudes/api";
+import { reactToGratitude, useGratitude } from "@/features/gratitudes/api";
 import GratitudeCardMobile from "@/features/gratitudes/components/GratitudeCardMobile";
 import { getCurrentUser } from "@/lib/getUser";
 import { formatThisDate } from "@/lib/utils";
@@ -22,9 +22,16 @@ const GratitudeMobile = () => {
     return () => {};
   }, []);
 
-  const handleReact = (id: string, reaction: string) => {};
+  const handleReact = async (
+    gratitude_id: string,
+    type: "heart" | "cared" | "like" | "prayed" | "celebrate",
+  ) => {
+    console.log("hello", gratitude_id, type);
+    await reactToGratitude(gratitude_id, type);
+    await mutateGratitude();
+  };
   return (
-    <div className="xsm:hidden h-[100dvh] overflow-y-auto snap-y snap-mandatory">
+    <div className="xsm:hidden h-full overflow-y-auto snap-y snap-mandatory pb-14">
       {data?.map((item: any) => (
         <GratitudeCardMobile
           handleReact={handleReact}
