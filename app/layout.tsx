@@ -35,7 +35,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} max-w-[1258px] mx-auto px-0 sm:px-6`}
       >
-        {!excludeLayoutRoutes.includes(pathname) && (
+        {/* {!excludeLayoutRoutes.includes(pathname) && (
           <MenuProvider>
             <NavigationBar
               menuItems={[
@@ -45,7 +45,7 @@ export default function RootLayout({
               user={null}
             />
           </MenuProvider>
-        )}
+        )} */}
         <main className=" xsm:pt-6 flex flex-col gap-8">{children}</main>
       </body>
     </html>
