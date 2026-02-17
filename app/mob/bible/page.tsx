@@ -33,7 +33,7 @@ const BibleMobile = ({ params }: { params?: any }) => {
   console.log("current:", Number(params?.get("verse")));
 
   return (
-    <div className="px-8 w-full max-h-[100dvh] overflow-auto pb-20">
+    <div className="px-8 w-full h-full overflow-auto pb-20">
       <div className="flex gap-4 text-xl py-5 flex-col w-full xsm:flex-row">
         <select
           onChange={(e) => setVersion(e.currentTarget.value)}

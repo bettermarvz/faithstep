@@ -25,14 +25,16 @@ const Avatar = ({
   url,
   label = "?",
   size = "md",
+  className = "",
 }: {
   url?: string;
   label?: string;
   size?: "sm" | "md";
+  className?: string;
 }) => {
   const baseStyle = `rounded-full bg-gray-300 flex items-center justify-center text-white font-bold ${
     avatarSize[size].string
-  } ${size === "sm" ? "text-sm" : "text-lg"}`;
+  } ${size === "sm" ? "text-sm" : "text-lg"} ${className}`;
   if (!url && !label) {
     return <></>;
   }

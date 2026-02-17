@@ -31,7 +31,7 @@ const GratitudeMobile = () => {
     await mutateGratitude();
   };
   return (
-    <div className="xsm:hidden h-full overflow-y-auto snap-y snap-mandatory pb-14">
+    <div className="xsm:hidden h-full overflow-y-auto snap-y snap-mandatory ">
       {data?.map((item: any) => (
         <GratitudeCardMobile
           handleReact={handleReact}

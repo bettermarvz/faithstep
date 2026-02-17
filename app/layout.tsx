@@ -1,13 +1,13 @@
 "use client";
 
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Meta from "@/components/global/Meta";
 import NavigationBar from "@/features/navigation/components/NavigationBar";
 import { MenuProvider } from "@/features/providers/MenuProvider";
 import { usePathname } from "next/navigation";
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ["latin"],
   display: "swap",
 });
@@ -33,7 +33,7 @@ export default function RootLayout({
         <Meta />
       </head>
       <body
-        className={`${inter.className} max-w-[1258px] mx-auto px-0 sm:px-6`}
+        className={`${montserrat.className} max-w-[1258px] mx-auto px-0 sm:px-6`}
       >
         {/* {!excludeLayoutRoutes.includes(pathname) && (
           <MenuProvider>
