@@ -6,6 +6,8 @@ import DailyChallengeCard from "@/features/dailychallenge/component/DailyChallen
 import DailyStepCard from "@/features/dailystep/component/DailyStepCard";
 import { getDailyVerse } from "@/features/dailystep/getDailyStep";
 import { getCurrentUser } from "@/lib/getUser";
+import { Footprints } from "lucide-react";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const HomeMobile = () => {
@@ -41,10 +43,17 @@ const HomeMobile = () => {
   };
 
   return (
-    <div className="p-2 gap-4 flex flex-col pt-10">
-      <h1 className="text-xl font-semibold">
+    <div className="p-5 gap-4 flex flex-col pt-10 overflow-auto h-full">
+      <div className="w-full flex justify-start items-center">
+        <Image src="/faithstep.png" alt="logo" width={176} height={36} />
+        {/* <span>
+          <Footprints strokeWidth={1.75} />
+          1,245
+        </span> */}
+      </div>
+      {/* <h1 className="text-xl font-semibold">
         {greetings()}, {user?.displayName.split(" ")[0] ?? "friend"}!
-      </h1>
+      </h1> */}
       <DailyStepCard
         text={verse}
         book={book}

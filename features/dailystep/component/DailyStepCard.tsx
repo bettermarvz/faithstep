@@ -18,12 +18,12 @@ const DailyStepCard = ({
 }) => {
   const passage = `${book} ${chapter}:${verse}`;
   return (
-    <div className="flex flex-col bg-primary-900 text-white p-6 gap-5 rounded-2xl drop-shadow-xl justify-between">
+    <div className="flex flex-col bg-secondary-500 text-white p-6 gap-5 rounded-2xl drop-shadow-xl justify-between">
       <div className="flex justify-between min-h-[56px]">
         <h1 className="font-bold text-2xl">Daily Step</h1>
-        <p>{today()}</p>
+        {/* <p>{today()}</p> */}
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-2">
         <p className="text-2xl font-light">
           {text || (
             <>
