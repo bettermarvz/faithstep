@@ -75,6 +75,10 @@ export async function updateSession(request: NextRequest) {
   } else {
     url.pathname = pathname;
   }
+  if (user && pathname === "/") {
+    if (mobile) url.pathname = "/mob/overview";
+    url.pathname = "/overview";
+  }
   return NextResponse.rewrite(url);
   // if (
   //   !user &&
