@@ -42,7 +42,7 @@ const HomeMobile = () => {
   return (
     <div className="p-5 gap-4 flex flex-col pt-10 overflow-auto h-full">
       <div className="w-full flex justify-start items-center">
-        <Image src="/faithstep.png" alt="logo" width={176} height={36} />
+        <Image src="/FaithStep.png" alt="logo" width={176} height={36} />
         {/* <span>
           <Footprints strokeWidth={1.75} />
           1,245
