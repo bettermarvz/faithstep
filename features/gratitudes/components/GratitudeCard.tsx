@@ -29,6 +29,31 @@ const GratitudeCard = ({
   likes: number;
   hearts: number;
 }) => {
+
+  const [isLiked, setIsLiked] = React.useState(isDidReactLike);
+  const [isHeart, setIsHeart] = React.useState(isDidReactHeart);
+  const [currentLikes, setCurrentLikes] = React.useState(likes || 0);
+  const [currentHearts, setCurrentHearts] = React.useState(hearts || 0);
+
+  const handleLike = () => {
+    if (isLiked) {
+      setCurrentLikes((prev) => prev - 1);
+    } else {
+      setCurrentLikes((prev) => prev + 1);
+    }
+    setIsLiked(!isLiked);
+    handleReact(id, "like");
+  };
+
+  const handleHeart = () => {
+    if (isHeart) {
+      setCurrentHearts((prev) => prev - 1);
+    } else {
+      setCurrentHearts((prev) => prev + 1);
+    }
+    setIsHeart(!isHeart);
+    handleReact(id, "heart");
+  };
   return (
     <div className="bg-white rounded-[16px] p-3 flex flex-col gap-[10px] shadow-md w-full xsm:min-w-[380px] justify-between xsm:w-1/3 min-h-[195px]">
       <div className="flex flex-col">
@@ -43,30 +68,24 @@ const GratitudeCard = ({
       </div>
       <div className="px-2 text-[12px] flex items-center gap-2 justify-end">
         <>
-          <button
-            className="cursor-pointer"
-            onClick={() => handleReact(id, "heart")}
-          >
+          <button className="cursor-pointer" onClick={() => handleHeart()}>
             <LucideHeart
               width={16}
-              color={isDidReactHeart ? "red" : "black"}
+              color={isHeart ? "red" : "black"}
               // className={isDidReact ? "bg-red-500" : ""}
             />
           </button>{" "}
-          {hearts || "0"}
+          {currentHearts || "0"}
         </>
         <>
-          <button
-            className="cursor-pointer"
-            onClick={() => handleReact(id, "like")}
-          >
+          <button className="cursor-pointer" onClick={() => handleLike()}>
             <ThumbsUp
               width={16}
-              color={isDidReactLike ? "red" : "black"}
+              color={isLiked ? "red" : "black"}
               // className={isDidReact ? "bg-red-500" : ""}
             />
           </button>{" "}
-          {likes || "0"}
+          {currentLikes || "0"}
         </>
       </div>
     </div>
