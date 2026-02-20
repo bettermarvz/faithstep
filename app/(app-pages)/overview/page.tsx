@@ -7,6 +7,7 @@ import DailyStepCard from "@/features/dailystep/component/DailyStepCard";
 import { getDailyVerse } from "@/features/dailystep/getDailyStep";
 import { reactToGratitude, useGratitude } from "@/features/gratitudes/api";
 import GratitudeCard from "@/features/gratitudes/components/GratitudeCard";
+import { GratitudeType } from "@/features/gratitudes/type";
 import { getCurrentUser } from "@/lib/getUser";
 import { formatThisDate } from "@/lib/utils";
 import { User } from "@supabase/supabase-js";
@@ -71,7 +72,7 @@ const Overview = () => {
         </div>
 
         <div className="flex gap-4 w-full flex-wrap xsm:flex-nowrap">
-          {gratitude?.map((item) => {
+          {gratitude?.map((item: GratitudeType) => {
             // const reactions =
             //   item.hearts +
             //   item.likes +
@@ -93,14 +94,18 @@ const Overview = () => {
                 timePosted={formatThisDate(item.createdat)}
                 hearts={item.hearts}
                 likes={item.likes}
-                isDidReactHeart={item?.reactions?.find(
-                  (item: any) =>
-                    item.user_id === me?.id && item.reaction === "heart",
-                )}
-                isDidReactLike={item?.reactions?.find(
-                  (item: any) =>
-                    item.user_id === me?.id && item.reaction === "like",
-                )}
+                isDidReactHeart={
+                  !!item?.reactions?.find(
+                    (item: any) =>
+                      item.user_id === me?.id && item.reaction === "heart",
+                  )
+                }
+                isDidReactLike={
+                  !!item?.reactions?.find(
+                    (item: any) =>
+                      item.user_id === me?.id && item.reaction === "like",
+                  )
+                }
               />
             );
           })}
