@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import Avatar from "@/components/global/Avatar";
-import { Heart, HeartIcon, LucideHeart, ThumbsUp } from "lucide-react";
+import { LucideHeart, ThumbsUp } from "lucide-react";
 import React from "react";
 
 const GratitudeCard = ({
@@ -7,7 +8,7 @@ const GratitudeCard = ({
   name = "",
   timePosted = "",
   message = "",
-  reactions = 0,
+  // reactions = 0,
   isDidReactHeart = false,
   isDidReactLike = false,
   handleReact,
@@ -18,7 +19,7 @@ const GratitudeCard = ({
   name?: string;
   timePosted?: string;
   message?: string;
-  reactions?: number;
+  // reactions?: number;
   isDidReactHeart?: boolean;
   isDidReactLike?: boolean;
   handleReact: (

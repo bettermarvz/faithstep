@@ -18,7 +18,7 @@ const MobileNavBar = ({ className }: { className?: string }) => {
     <div className={`${className}`}>
       <Link
         href="/home"
-        className={`rounded-full p-1 ${pathname === "/home" ? "bg-secondary-500" : ""}`}
+        className={`rounded-full p-1 ${pathname === "/" ? "bg-secondary-500" : ""}`}
       >
         <House />
       </Link>

@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
+import React, { memo } from "react";
 import GratitudeCard from "./GratitudeCard";
 import { formatThisDate } from "@/lib/utils";
 import { User } from "@supabase/supabase-js";
@@ -43,17 +44,6 @@ const GratitudeWall = ({
                 item.user_id === currentUser?.id && item.reaction === "like",
             )}
           />
-          // <GratitudeCard
-          //   key={item.id}
-          //   name={
-          //     item.isanonymous
-          //       ? item.user_profiles.anonymous_username
-          //       : item.user_profiles.displayname
-          //   }
-          //   message={item.content}
-          //   timePosted={formatThisDate(item.createdat)}
-          //   reactions={12}
-          // />
         ))}
       </div>
       <div className="xsm:hidden h-[100dvh] overflow-y-auto snap-y snap-mandatory">
@@ -86,4 +76,4 @@ const GratitudeWall = ({
   );
 };
 
-export default GratitudeWall;
+export default memo(GratitudeWall);
