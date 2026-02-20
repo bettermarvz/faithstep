@@ -2,8 +2,6 @@
 
 import * as React from "react";
 import { toast, Toaster } from "sonner";
-import * as z from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,7 +15,7 @@ import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { signUpWithPassword } from "../api";
 
 const SignupForm = () => {
@@ -37,7 +35,7 @@ const SignupForm = () => {
       password: data.password,
       name: data.name,
     });
-    // console.log(signUpData, "data");
+
     if (!signUpData.user) {
       toast.error("Signup failed. Please try again.");
       return;
@@ -54,7 +52,7 @@ const SignupForm = () => {
   };
 
   useEffect(() => {
-    const subscription = form.watch((value, { name, type }) => {
+    const subscription = form.watch((value, { name }) => {
       if (name === "email") {
         const email = form.getValues("email");
         if (email && !isValidEmail(email)) {

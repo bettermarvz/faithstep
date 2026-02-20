@@ -1,10 +1,21 @@
-import { createServerClient } from "@supabase/ssr";
+// import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { ROUTE_MAP } from "../routing/routes";
 
 function isMobile(userAgent: string) {
   return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
     userAgent,
   );
+}
+
+function getRouteForDevice(pathname: string, isMobile: boolean): string {
+  const mapping = ROUTE_MAP[pathname as keyof typeof ROUTE_MAP];
+
+  if (!mapping) {
+    return pathname; // Unknown route, pass-through
+  }
+
+  return isMobile ? mapping.mobile : mapping.desktop;
 }
 
 export async function updateSession(request: NextRequest) {
@@ -17,40 +28,40 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const auth = [
-    "/auth/login",
-    "/auth/signup",
-    "/auth/confirm-email",
-    "/account/setup",
-  ];
-  let supabaseResponse = NextResponse.next({
-    request,
-  });
+  // const auth = [
+  //   "/auth/login",
+  //   "/auth/signup",
+  //   "/auth/confirm-email",
+  //   "/account/setup",
+  // ];
+  // let supabaseResponse = NextResponse.next({
+  //   request,
+  // });
 
   // With Fluid compute, don't put this client in a global environment
   // variable. Always create a new one on each request.
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value),
-          );
-          supabaseResponse = NextResponse.next({
-            request,
-          });
-          cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options),
-          );
-        },
-      },
-    },
-  );
+  // const supabase = createServerClient(
+  //   process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  //   process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+  //   {
+  //     cookies: {
+  //       getAll() {
+  //         return request.cookies.getAll();
+  //       },
+  //       setAll(cookiesToSet) {
+  //         cookiesToSet.forEach(({ name, value }) =>
+  //           request.cookies.set(name, value),
+  //         );
+  //         supabaseResponse = NextResponse.next({
+  //           request,
+  //         });
+  //         cookiesToSet.forEach(({ name, value, options }) =>
+  //           supabaseResponse.cookies.set(name, value, options),
+  //         );
+  //       },
+  //     },
+  //   },
+  // );
 
   // Do not run code between createServerClient and
   // supabase.auth.getClaims(). A simple mistake could make it very hard to debug
@@ -58,28 +69,29 @@ export async function updateSession(request: NextRequest) {
 
   // IMPORTANT: If you remove getClaims() and you use server-side rendering
   // with the Supabase client, your users may be randomly logged out.
-  const { data } = await supabase.auth.getClaims();
+  // const { data } = await supabase.auth.getClaims();
 
-  const user = data?.claims;
+  // const user = data?.claims;
 
   const ua = request.headers.get("user-agent") || "";
   const mobile = isMobile(ua);
+  const finalPath = getRouteForDevice(pathname, mobile);
 
   const url = request.nextUrl.clone();
+  url.pathname = finalPath;
 
-  console.log("User Agent:", ua);
-  console.log("Is Mobile:", pathname, mobile);
-
-  if (mobile && !pathname.startsWith("/auth")) {
-    url.pathname = `/mob${pathname}`;
-  } else {
-    url.pathname = pathname;
-  }
-  if (user && pathname === "/") {
-    if (mobile) url.pathname = "/mob/overview";
-    url.pathname = "/overview";
-  }
   return NextResponse.rewrite(url);
+
+  // if (mobile && !pathname.startsWith("/auth")) {
+  //   url.pathname = `/mob${pathname}`;
+  // } else {
+  //   url.pathname = pathname;
+  // }
+  // if (user && pathname === "/") {
+  //   if (mobile) url.pathname = "/mob/overview";
+  //   url.pathname = "/overview";
+  // }
+  // return NextResponse.rewrite(url);
   // if (
   //   !user &&
   //   !request.nextUrl.pathname.startsWith("/auth/login") &&
@@ -113,5 +125,5 @@ export async function updateSession(request: NextRequest) {
   // If this is not done, you may be causing the browser and server to go out
   // of sync and terminate the user's session prematurely!
 
-  return supabaseResponse;
+  // return supabaseResponse;
 }

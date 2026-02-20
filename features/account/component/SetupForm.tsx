@@ -17,10 +17,10 @@ import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Toaster } from "sonner";
 
-const SetupForm = ({ token }: { token: string }) => {
-  if (!token) {
-    console.log("Setup token:", token);
-  }
+const SetupForm = () => {
+  // if (!token) {
+  //   console.log("Setup token:", token);
+  // }
   const [loading, setLoading] = useState(false);
   const route = useRouter();
   const form = useForm({
@@ -30,10 +30,9 @@ const SetupForm = ({ token }: { token: string }) => {
     },
   });
 
-  const handleSubmit = form.handleSubmit(async (data) => {
+  const handleSubmit = form.handleSubmit(async () => {
     setLoading(true);
     // const { user, session } = await loginWithPassword(data);
-    // console.log({ user, session });
     route.push("/overview");
     setLoading(false);
   });

@@ -7,6 +7,7 @@ import DailyStepCard from "@/features/dailystep/component/DailyStepCard";
 import { getDailyVerse } from "@/features/dailystep/getDailyStep";
 import { reactToGratitude, useGratitude } from "@/features/gratitudes/api";
 import GratitudeCard from "@/features/gratitudes/components/GratitudeCard";
+import { GratitudeType } from "@/features/gratitudes/type";
 import { getCurrentUser } from "@/lib/getUser";
 import { formatThisDate } from "@/lib/utils";
 import { User } from "@supabase/supabase-js";
@@ -15,13 +16,12 @@ import React, { useEffect, useState } from "react";
 
 const Overview = () => {
   const { book, chapter, verse: verseNumber } = getDailyVerse();
-  const { data: gratitude, isLoading, mutateGratitude } = useGratitude(3);
+  const { data: gratitude, mutateGratitude } = useGratitude(3);
   const [verse, setVerse] = useState("");
   const [me, setMe] = useState<User | null>(null);
   useEffect(() => {
     const fetch = async () => {
       const res = await getVerse(book, chapter, verseNumber);
-      console.log(res);
       setVerse(res.data.text);
       return res;
     };
@@ -40,12 +40,10 @@ const Overview = () => {
     return () => {};
   }, []);
 
-
   const handleReact = async (
     gratitude_id: string,
     type: "heart" | "cared" | "like" | "prayed" | "celebrate",
   ) => {
-    console.log("hello", gratitude_id, type);
     await reactToGratitude(gratitude_id, type);
     await mutateGratitude();
   };
@@ -74,13 +72,13 @@ const Overview = () => {
         </div>
 
         <div className="flex gap-4 w-full flex-wrap xsm:flex-nowrap">
-          {gratitude?.map((item) => {
-            const reactions =
-              item.hearts +
-              item.likes +
-              item.cared +
-              item.prayed +
-              item.celebrate;
+          {gratitude?.map((item: GratitudeType) => {
+            // const reactions =
+            //   item.hearts +
+            //   item.likes +
+            //   item.cared +
+            //   item.prayed +
+            //   item.celebrate;
 
             return (
               <GratitudeCard
@@ -96,14 +94,18 @@ const Overview = () => {
                 timePosted={formatThisDate(item.createdat)}
                 hearts={item.hearts}
                 likes={item.likes}
-                isDidReactHeart={item?.reactions?.find(
-                  (item: any) =>
-                    item.user_id === me?.id && item.reaction === "heart",
-                )}
-                isDidReactLike={item?.reactions?.find(
-                  (item: any) =>
-                    item.user_id === me?.id && item.reaction === "like",
-                )}
+                isDidReactHeart={
+                  !!item?.reactions?.find(
+                    (item: any) =>
+                      item.user_id === me?.id && item.reaction === "heart",
+                  )
+                }
+                isDidReactLike={
+                  !!item?.reactions?.find(
+                    (item: any) =>
+                      item.user_id === me?.id && item.reaction === "like",
+                  )
+                }
               />
             );
           })}

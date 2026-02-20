@@ -1,12 +1,12 @@
-import { createClientBrowser } from "@/lib/supabase/client";
+import { getSupabaseClient } from "@/lib/supabase/client";
 import useSWR from "swr";
-import { success } from "zod";
+// import { success } from "zod";
 
 // :::::::::NOTE::::::::
 // These functions should be used in client side only.
 // When used in server, supabase instance will become shared and Auth states may bleed between requests
 
-const supabaseClient = createClientBrowser();
+const supabaseClient = getSupabaseClient();
 
 export const postGratitude = async ({
   gratitude,
@@ -99,14 +99,7 @@ export const reactToGratitude = async (
   if (!session) {
     return;
   }
-  console.log({
-    user_id: session.user.id,
-    gratitude_id,
-    types: {
-      user_id: typeof session.user.id,
-      gratitude_id: typeof gratitude_id,
-    },
-  });
+
   const { data: existing } = await supabaseClient
     .from("gratitude_reactions")
     .select()
@@ -115,13 +108,12 @@ export const reactToGratitude = async (
     .maybeSingle();
 
   if (existing) {
-    console.log("existing...", existing);
     if (existing.type === type) {
       const { data } = await supabaseClient
         .from("gratitude_reactions")
         .delete()
         .eq("id", existing.id);
-      console.log("deleted", data);
+
       return {
         data,
       };
@@ -141,8 +133,6 @@ export const reactToGratitude = async (
       };
     }
   }
-
-  console.log("reacting...");
 
   const { data: reactions } = await supabaseClient
     .from("gratitude_reactions")

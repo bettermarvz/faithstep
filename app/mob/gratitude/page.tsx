@@ -9,7 +9,7 @@ import { User } from "@supabase/supabase-js";
 import React, { useEffect, useState } from "react";
 
 const GratitudeMobile = () => {
-  const { data, isLoading, mutateGratitude } = useGratitude();
+  const { data, mutateGratitude } = useGratitude();
   const [me, setMe] = useState<User | null>(null);
 
   useEffect(() => {
@@ -26,7 +26,6 @@ const GratitudeMobile = () => {
     gratitude_id: string,
     type: "heart" | "cared" | "like" | "prayed" | "celebrate",
   ) => {
-    console.log("hello", gratitude_id, type);
     await reactToGratitude(gratitude_id, type);
     await mutateGratitude();
   };

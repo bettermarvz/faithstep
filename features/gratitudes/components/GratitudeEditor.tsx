@@ -27,7 +27,6 @@ const GratitudeEditor = ({ charLimit = 280 }: { charLimit?: number }) => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = async (data: any) => {
-    console.log("hello logs");
     setLoading(true);
     try {
       await postGratitude({

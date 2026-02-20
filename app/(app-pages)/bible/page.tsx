@@ -24,13 +24,11 @@ const BiblePage = ({ params }: { params?: any }) => {
     const fetchData = async () => {
       const { data, chapters } = await getChapter(version, book, chapter);
       setVerses(data.data);
-      console.log("chapter data", data, chapters);
       setCount(chapters);
     };
     fetchData();
   }, [version, chapter, book]);
 
-  console.log("current:", Number(params?.get("verse")));
 
   return (
     <div className="px-8 w-full">

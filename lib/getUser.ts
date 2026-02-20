@@ -1,7 +1,7 @@
-import { createClientBrowser } from "./supabase/client";
+import { getSupabaseClient } from "./supabase/client";
 // import { createClientServer } from "./supabase/server";
 
-const supabase = await createClientBrowser();
+const supabase = await getSupabaseClient();
 
 export const getUser = async () => {
   const { data } = await supabase.auth.getUser();
