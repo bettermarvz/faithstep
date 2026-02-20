@@ -17,12 +17,12 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const auth = [
-    "/auth/login",
-    "/auth/signup",
-    "/auth/confirm-email",
-    "/account/setup",
-  ];
+  // const auth = [
+  //   "/auth/login",
+  //   "/auth/signup",
+  //   "/auth/confirm-email",
+  //   "/account/setup",
+  // ];
   let supabaseResponse = NextResponse.next({
     request,
   });
@@ -66,9 +66,6 @@ export async function updateSession(request: NextRequest) {
   const mobile = isMobile(ua);
 
   const url = request.nextUrl.clone();
-
-  console.log("User Agent:", ua);
-  console.log("Is Mobile:", pathname, mobile);
 
   if (mobile && !pathname.startsWith("/auth")) {
     url.pathname = `/mob${pathname}`;

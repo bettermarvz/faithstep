@@ -14,7 +14,6 @@ import React from "react";
 const MobileNavBar = ({ className }: { className?: string }) => {
   const pathname = usePathname();
 
-  console.log(pathname);
   return (
     <div className={`${className}`}>
       <Link

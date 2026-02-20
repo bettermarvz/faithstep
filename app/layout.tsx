@@ -3,9 +3,9 @@
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Meta from "@/components/global/Meta";
-import NavigationBar from "@/features/navigation/components/NavigationBar";
-import { MenuProvider } from "@/features/providers/MenuProvider";
-import { usePathname } from "next/navigation";
+// import NavigationBar from "@/features/navigation/components/NavigationBar";
+// import { MenuProvider } from "@/features/providers/MenuProvider";
+// import { usePathname } from "next/navigation";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -17,15 +17,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-  const excludeLayoutRoutes = [
-    "/overview",
-    "/auth/login",
-    "/auth/signup",
-    "/challenges",
-    "/gratitude",
-    "/bible",
-  ];
+  // const pathname = usePathname();
+  // const excludeLayoutRoutes = [
+  //   "/overview",
+  //   "/auth/login",
+  //   "/auth/signup",
+  //   "/challenges",
+  //   "/gratitude",
+  //   "/bible",
+  // ];
   return (
     <html lang="en">
       <head>

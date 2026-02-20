@@ -1,6 +1,6 @@
-import { createClientBrowser } from "@/lib/supabase/client";
+import { getSupabaseClient } from "@/lib/supabase/client";
 
-const supabaseClient = createClientBrowser();
+const supabaseClient = getSupabaseClient();
 
 export const signUpWithPassword = async (payload: {
   email: string;

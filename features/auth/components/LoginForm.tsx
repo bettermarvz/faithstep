@@ -2,8 +2,6 @@
 
 import * as React from "react";
 import { toast, Toaster } from "sonner";
-import * as z from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,12 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 
@@ -40,7 +33,7 @@ export function LoginForm() {
   const handleSubmit = form.handleSubmit(async (data) => {
     setLoading(true);
     const { user, session } = await loginWithPassword(data);
-    // console.log({ user, session });
+
     if (!user && !session) {
       toast.error("Login failed. Please check your credentials.");
       setLoading(false);

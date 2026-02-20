@@ -18,7 +18,6 @@ const Gratitude = () => {
     };
     fetchMe();
 
-    return () => {};
   }, []);
 
   useEffect(() => {
@@ -32,7 +31,9 @@ const Gratitude = () => {
       },
     );
     observer.observe(ref.current);
-    return () => {};
+    return () => {
+      observer.disconnect();
+    };
     // return observer.disconnect();
   }, []);
   const { data, isLoading, mutateGratitude } = useGratitude();
@@ -41,7 +42,6 @@ const Gratitude = () => {
     gratitude_id: string,
     type: "heart" | "cared" | "like" | "prayed" | "celebrate",
   ) => {
-    console.log("hello", gratitude_id, type);
     await reactToGratitude(gratitude_id, type);
     await mutateGratitude();
   };

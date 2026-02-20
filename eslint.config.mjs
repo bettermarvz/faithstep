@@ -13,6 +13,14 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    rules: {
+      // "no-console": ["error", { allow: ["warn", "error"] }],
+      "no-unused-vars": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "react-hooks/rules-of-hooks": "error",
+    },
+  },
 ]);
 
 export default eslintConfig;

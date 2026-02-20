@@ -15,13 +15,12 @@ import React, { useEffect, useState } from "react";
 
 const Overview = () => {
   const { book, chapter, verse: verseNumber } = getDailyVerse();
-  const { data: gratitude, isLoading, mutateGratitude } = useGratitude(3);
+  const { data: gratitude, mutateGratitude } = useGratitude(3);
   const [verse, setVerse] = useState("");
   const [me, setMe] = useState<User | null>(null);
   useEffect(() => {
     const fetch = async () => {
       const res = await getVerse(book, chapter, verseNumber);
-      console.log(res);
       setVerse(res.data.text);
       return res;
     };
@@ -40,12 +39,10 @@ const Overview = () => {
     return () => {};
   }, []);
 
-
   const handleReact = async (
     gratitude_id: string,
     type: "heart" | "cared" | "like" | "prayed" | "celebrate",
   ) => {
-    console.log("hello", gratitude_id, type);
     await reactToGratitude(gratitude_id, type);
     await mutateGratitude();
   };
@@ -75,12 +72,12 @@ const Overview = () => {
 
         <div className="flex gap-4 w-full flex-wrap xsm:flex-nowrap">
           {gratitude?.map((item) => {
-            const reactions =
-              item.hearts +
-              item.likes +
-              item.cared +
-              item.prayed +
-              item.celebrate;
+            // const reactions =
+            //   item.hearts +
+            //   item.likes +
+            //   item.cared +
+            //   item.prayed +
+            //   item.celebrate;
 
             return (
               <GratitudeCard

@@ -1,4 +1,3 @@
-import verses from "./encouraging-verses.json";
 import chapters from "./numberofchaptersperbook.json";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -7,7 +6,7 @@ import chapters from "./numberofchaptersperbook.json";
 
 //   const res = await fetch(url);
 //   const data = await res.json();
-//   console.log("data", res, data);
+
 //   const numbers = data
 //     .filter(
 //       (item: any) => item.type === "file" && /^\d+\.json$/.test(item.name),
@@ -47,17 +46,19 @@ export const getVerse = async (
   verse: number,
 ) => {
   const bk = book.toLocaleLowerCase().replace(/\s+/g, "");
+  // const cacheKey = `bible:${bk}:${chapter}:${verse}`;
 
   const result = await fetch(
     `https://cdn.jsdelivr.net/gh/wldeh/bible-api/bibles/en-asv/books/${bk}/chapters/${chapter}/verses/${verse}.json`,
-    { cache: "no-store" },
+    {
+      cache: "force-cache", // Cache for 1 year by default
+      next: { revalidate: 31536000 }, // 1 year ISR
+    },
   );
 
   if (!result) {
     throw new Error("failed to fetch bible");
   }
-
-  console.log(result);
 
   return {
     data: await result.json(),
