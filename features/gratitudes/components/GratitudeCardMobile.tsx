@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Avatar from "@/components/global/Avatar";
 import { Heart, ThumbsUp } from "lucide-react";
 import React from "react";
@@ -28,6 +29,19 @@ const GratitudeCardMobile = ({
   likes: number;
   hearts: number;
 }) => {
+  const [isHeart, setIsHeart] = React.useState(isDidReactHeart);
+  const [currentHearts, setCurrentHearts] = React.useState(hearts || 0);
+
+  const handleHeart = () => {
+    if (isHeart) {
+      setCurrentHearts((prev) => prev - 1);
+    } else {
+      setCurrentHearts((prev) => prev + 1);
+    }
+    setIsHeart(!isHeart);
+    handleReact(id, "heart");
+  };
+
   return (
     <div className="w-screen h-full border flex justify-between items-center snap-start relative">
       <p className="px-10 h-2/3 w-full text-2xl">{message}</p>
@@ -41,15 +55,16 @@ const GratitudeCardMobile = ({
         </span>
         <div className="flex flex-col gap-4 mt-2">
           <button
-            onClick={() => handleReact(id, "heart")}
+            onClick={handleHeart}
             className={`flex flex-col justify-center items-center gap-0`}
           >
             <Heart
               size={32}
               strokeWidth={1.5}
-              className={`${isDidReactHeart ? "fill-red-400" : ""}`}
+              fill={isHeart ? "red" : "none"}
+              // className={`${isHeart ? "fill-red-400" : ""}`}
             />
-            <p className="text-sm">{hearts}</p>
+            <p className="text-sm">{currentHearts}</p>
           </button>
         </div>
       </div>
