@@ -31,6 +31,9 @@ export default function RootLayout({
       <head>
         <title>Your daily step to faith from FaithStep app</title>
         <Meta />
+        <link rel="manifest" href="/manifest.webmanifest" />
+        <meta name="theme-color" content="#000000" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png" />
       </head>
       <body
         className={`${montserrat.className} max-w-[1258px] mx-auto px-0 sm:px-6`}
