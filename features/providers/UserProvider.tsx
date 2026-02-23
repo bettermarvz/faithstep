@@ -1,8 +1,14 @@
 "use client";
 
 import React, { createContext, useContext } from "react";
-
-const UserContext = createContext(null);
+type User = {
+  displayName: string;
+  email: string;
+  email_verified: boolean;
+  phone_verified: boolean;
+  sub: string;
+};
+const UserContext = createContext<User | null>(null);
 
 const UserProvider = ({
   user,

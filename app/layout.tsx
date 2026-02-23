@@ -3,6 +3,9 @@
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Meta from "@/components/global/Meta";
+import UserProvider from "@/features/providers/UserProvider";
+import { useEffect, useState } from "react";
+import { getCurrentUser } from "@/lib/getUser";
 // import NavigationBar from "@/features/navigation/components/NavigationBar";
 // import { MenuProvider } from "@/features/providers/MenuProvider";
 // import { usePathname } from "next/navigation";
@@ -17,6 +20,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [user, setUser] = useState<any>();
+
+  useEffect(() => {
+    const fetch = async () => {
+      const { user } = await getCurrentUser();
+      setUser(user?.user_metadata);
+    };
+    fetch();
+    return () => {};
+  }, []);
   // const pathname = usePathname();
   // const excludeLayoutRoutes = [
   //   "/overview",
@@ -49,7 +63,10 @@ export default function RootLayout({
             />
           </MenuProvider>
         )} */}
-        <main className=" xsm:pt-6 flex flex-col gap-8">{children}</main>
+
+        <main className=" xsm:pt-6 flex flex-col gap-8">
+          <UserProvider user={user}>{children}</UserProvider>
+        </main>
       </body>
     </html>
   );
